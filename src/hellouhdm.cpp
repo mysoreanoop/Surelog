@@ -14,53 +14,56 @@
 #else
 #define D(x)
 #endif
-/*
-   TODO statments within case -- not checking for ternaries
-   -- try and look for case items and then statemetns?
 
- */
-std::string visitref_obj(vpiHandle h) {
-  std::string result = "\t\t\t";
+std::string visitref_obj(vpiHandle h, bool fullName = true) { //TODO change back to false
+  std::string result = "";
   vpiHandle actual = vpi_handle(vpiActual, h);
+  fflush(stdout);
   if(actual) {
+    //result += "REF_OBJ Type: ";
     //result += std::to_string(((const uhdm_handle *)actual)->type);
+    fflush(stdout);
     if(((const uhdm_handle *)actual)->type == UHDM::uhdmenum_const) {
       //TODO not working!!!!
       result += std::to_string(vpi_get(vpiDecompile, actual));
     }
     else if(((const uhdm_handle *)actual)->type == UHDM::uhdmparameter) {
-      result += "PARAM: ";
-      result += std::to_string(vpi_get(vpiDecompile, actual));
-      result += "(";
-      result += vpi_get_str(vpiFullName, actual);
-      result += ")";
-      result += "\n";
+      //result += "PARAM: ";
+      //result += std::to_string(vpi_get(vpiDecompile, actual));
+      //result += "(";
+      result += fullName ? vpi_get_str(vpiFullName, actual) :
+        vpi_get_str(vpiName, actual);
+      //result += ")";
+      //result += "\n";
     }
-    else result += vpi_get_str(vpiFullName, actual);
+    else result += fullName ? vpi_get_str(vpiFullName, actual) :
+      vpi_get_str(vpiName, actual);
   }
   else {
-    result += vpi_get_str(vpiFullName, h);
+    //result += "REF_OBJ Type: ";
+    //result += std::to_string(((const uhdm_handle *)h)->type);
+    fflush(stdout);
+    result += fullName ? vpi_get_str(vpiFullName, h) :
+      vpi_get_str(vpiName, h);
   }
   return result;
 }
 
 std::string visitexpr(vpiHandle h) {
-  std::string result = " OLAF: ";
+  std::string result = "";
   switch(((const uhdm_handle *)h)->type) {
     case UHDM::uhdmoperation : {
       int val = vpi_get(vpiDecompile, h);
       result += std::to_string(val);
-      result += "ERROR found operation within expression!";
+      result += "ERROR_found_op";
       //result += vpi_get_str(vpiDecompile, h);
-      //TODO if expression is part of range -- tehn it has to be evaluated as expression/operation
-      //TODO if parameter is part of range -- tehn it has to be evaluated as expression/operation
+      //TODO if expression/parameter is part of range -- tehn it has to be evaluated as expression/operation
       break;
     }
     case UHDM::uhdmconstant : {
-      result += "Found constant within expression: ";
+      //result += "Found constant within expression: ";
       s_vpi_value value;
       vpi_get_value(h, &value);
-      //TODO somehow reference visit_value in UHDM::??
       if (value.format) {
         result += std::to_string(value.value.integer);
       } else result += "Format not set!";
@@ -68,12 +71,16 @@ std::string visitexpr(vpiHandle h) {
     }
     case UHDM::uhdmparameter : {
       int d = vpi_get(vpiDecompile, h);
-      result += "Parameter decompiled: ";
+      result += "ParameterDecompiled:";
       result += std::to_string(d);
       break;
     }
+    case UHDM::uhdmhier_path : 
+      //TODO fill this up
+      result +="0";
+      break;
     case UHDM::uhdmref_obj : {
-      result += "RefObj within expr";
+      //result += "RefObj within expr";
       result += visitref_obj(h);
       //int d = vpi_get(vpiDecompile, h);
       //
@@ -85,36 +92,52 @@ std::string visitexpr(vpiHandle h) {
       break;
     }
     default: 
-      result += "ERROR found type: ";
+      result += "ERRORFound:";
       result += std::to_string(((const uhdm_handle *)h)->type);
-      result += ")";
       break;
   }
   return result;
 }
 
-std::string visitbit_sel(vpiHandle h) {
+std::string visitbit_sel(vpiHandle h, bool fullName = true) {
   std::string result = "";
+  //std::string result = "in bit select  ";
   vpiHandle par = vpi_handle(vpiParent, h);
   if(!par) result += "\t\t\tERROR Couldn't find parent of bit_sel!\n";
-  result += visitref_obj(par);
+  result += visitref_obj(par, fullName);
   result += "[";
   vpiHandle ind = vpi_handle(vpiIndex, h);
   //visitexpr checks for type: uhdmconstant / uhdmparameter
   if(ind) result += visitexpr(ind);
   else result += "ERROR Index not resolved!";
-  result += "]\n";
+  result += "]";
   return result;
 }
 
-std::string visitpart_sel(vpiHandle h) {
+std::string visitindexedpart_sel(vpiHandle h) {
+  std::string result = "";
+  //std::string result = "in bit select  ";
+  vpiHandle par = vpi_handle(vpiParent, h);
+  if(!par) result += "\t\t\tERROR Couldn't find parent of bit_sel!\n";
+  result += visitref_obj(par, true);
+  //TODO vpiBaseExpr, vpiWidthExpr
+  //result += "[";
+  //vpiHandle ind = vpi_handle(vpiIndex, h);
+  ////visitexpr checks for type: uhdmconstant / uhdmparameter
+  //if(ind) result += visitexpr(ind);
+  //else result += "ERROR Index not resolved!";
+  //result += "]";
+  return result;
+}
+
+std::string visitpart_sel(vpiHandle h, bool fullName= true) {
   std::string result = "";
   result += "";
   //result += "TYPE: ";
   //result += std::to_string(((uhdm_handle *)h)->type);
   vpiHandle par = vpi_handle(vpiParent, h);
   //if(!par) //D(result += "couldn't find parent of bit_sel!\n";)
-  if(par) result += visitref_obj(par);
+  if(par) result += visitref_obj(par, fullName);
   else result += "\t\t\tParent not found";
   result += "[";
   vpiHandle lrh = vpi_handle(vpiLeftRange, h);
@@ -126,42 +149,105 @@ std::string visitpart_sel(vpiHandle h) {
   //result += "  " +  std::to_string((((const uhdm_handle *)rrh)->type));
   if(rrh) result += visitexpr(rrh);
   else result += "\t\t\tLeft range not found";
-  result += "]\n";
+  result += "]";
   vpi_release_handle(rrh);
   vpi_release_handle(lrh);
   return result;
 }
 
+std::string visitCond(vpiHandle, bool);
+std::string visithier_path(vpiHandle soph) {
+  std::string result = "";
+  //result += "\t\t\tSTRUCT found\n";
+  vpiHandle it = vpi_iterate(vpiActual, soph);
+  if(it) {
+    bool first = true;
+    while(vpiHandle itx = vpi_scan(it)) {
+      //result += "\t\t\tFound one of the ref_objs: ";
+      //result += std::to_string(((const uhdm_handle *)itx)->type);
+      //result += "\n";
+      fflush(stdout);
+      if(first) {
+        result += visitCond(itx, true);
+      }
+      else {
+        result += ".";
+        result += visitCond(itx, false);
+      }
+      fflush(stdout);
+      //result += "\n";
+      first = false;
+    }
+  } else result += "ERROR couldn't iterate through 2 ref objs!\n";
+  return result;
+}
 //TODO verify
 std::string visitoperation(vpiHandle aa) {
   //Can be comparison ops; LHS/RHS possibly being arithmetic/logical op
-  std::string result = "\t\t\tFiguring out type of operation\n";
-  result += "\t\t\tOpType: ";
+  std::string result = "";
+  //std::string result += "\t\t\tFiguring out type of operation\n";
+  //result += "\t\t\tOpType: ";
   const int type = vpi_get(vpiOpType, aa);
-  result += std::to_string(type);
-  result += "\n";
+  std::string symbol = "";
+  switch(type) {
+    case 3  : symbol += " !  "; break;
+    case 4  : symbol += " ~  "; break;
+    case 5  : symbol += " &  "; break;
+    case 7  : symbol += " |  "; break;
+    case 11 : symbol += " -  "; break;
+    case 14 : symbol += " == "; break;
+    case 15 : symbol += " != "; break;
+    case 18 : symbol += " >  "; break;
+    case 19 : symbol += " >= "; break;
+    case 20 : symbol += " <  "; break;
+    case 21 : symbol += " <= "; break;
+    case 22 : symbol += " << "; break;
+    case 23 : symbol += " >> "; break;
+    case 24 : symbol += " +  "; break;
+    case 25 : symbol += " *  "; break;
+    case 26 : symbol += " && "; break;
+    case 27 : symbol += " || "; break;
+    case 28 : symbol += " &  "; break;
+    case 29 : symbol += " |  "; break;
+    case 30 : symbol += " ^  "; break;
+    case 33 : symbol += " ,  "; break;
+    default : symbol += " " + std::to_string(type) + " " ; break;
+  }
+  //result += std::to_string(type) + "(" + symbol + ")";
+  //result += "\n";
   vpiHandle sopi = vpi_iterate(vpiOperand, aa);
   if(sopi) {
-    result += "\t\t\tSome operation with:\n"; //just print it
+    //result += "\t\t\tSome operation with:\n"; 
+    int opCnt = 0;
     while(vpiHandle soph = vpi_scan(sopi)) {
+      if(type == 3 || type == 4 || type == 5 || type == 7) {
+        if(opCnt == 0)
+          result += symbol;
+        else result += "HOLD!! unary has a second op?";
+      } else if(type == 33 && opCnt == 0)  
+        result += "{ ";
       switch(((const uhdm_handle *)soph)->type) {
         case UHDM::uhdmbit_select :
+          //result += "bit select in operation;";
           result += visitbit_sel(soph);
           break;
         case UHDM::uhdmpart_select : //TODO 
           result += visitpart_sel(soph);
           break;
         case UHDM::uhdmoperation :
+          result += " ( ";
           result += visitoperation(soph);
+          result += " ) ";
           break;
         case UHDM::uhdmref_obj :
           result += visitref_obj(soph);
           break;
         case UHDM::uhdmconstant :
-          result += "\t\t\tConstant ignored";
+          //TODO need this when decompiling constnat
+          result += "Constant ignored";
           break;
-        case UHDM::uhdmhier_path :
-          result += "\t\t\tStruct found; can't resolve";
+        case UHDM::uhdmhier_path : 
+          result += visithier_path(soph);
           break;
         default : {
           result += "\t\t\tNot a recognized type of operand: ";//visitref_obj(aa);
@@ -170,54 +256,67 @@ std::string visitoperation(vpiHandle aa) {
           break;
         }
       }
-      result += "\t\t\tand ..\n ";
+      if(type != 3 && type != 4  && type != 5 && type != 7)
+        if(opCnt == 0)
+          result += symbol;
+      //else if(opCnt >1 )
+      //  result += "\nINFO operand num: " + std::to_string(opCnt);
+      opCnt++;
       vpi_release_handle(soph);
     }
     vpi_release_handle(sopi);
-    result += "\n";
+    if(type == 33)
+      result += " }";
+    //result += "\n";
   } 
   else {
-    result += "uhdmoperation of type: ";
+    result += "ERROR: Couldn't iterate on operands!! Op iterator type: ";
     result += std::to_string(((const uhdm_handle *)sopi)->type);
     result += "\n";
   }
   return result;
 }
 
-std::string visitCond(vpiHandle h) {
-  std::string result = "\t\t\tEvaluating condition...\n";
+std::string visitCond(vpiHandle h, bool fullName = true) {
+  //std::string result = "\t\t\tEvaluating condition...\n";
+  std::string result = "";
   switch(((const uhdm_handle *)h)->type) {
     case UHDM::uhdmpart_select :
-      result += "\t\t\tpart_sel: \n";
-      result += visitpart_sel(h);
-      result += "\n";
+      //result += "\t\t\tpart_sel: \n";
+      result += visitpart_sel(h, fullName);
       break;
+    case UHDM::uhdmindexed_part_select :
+      //result += "\t\t\tindexed_part_sel: \n";
+      result += visitindexedpart_sel(h);
+      break;
+      //TODO uncomment to solve issues!
+    //case UHDM::uhdmbit_select :
+    //  std::cout << "\t\t\tbit_sel: \n";
+    //  std::cout << visitbit_sel(h, fullName);
+    //  std::cout << "\n";
+    //  break;
     case UHDM::uhdmref_obj :
-      result += "\t\t\tref_obj: \n";
-      result += visitref_obj(h);
-      result += "\n";
+      //result += "\t\t\tref_obj: \n";
+      result += visitref_obj(h, fullName);
       break;
     case UHDM::uhdmexpr :
-      result += "\t\t\texpr: \n";
+      result += "\t\t\texpr: ";
       result += visitexpr(h);
-      result += "\n";
       break;
     case UHDM::uhdmhier_path :
-      result += "\t\t\thier_paths: \n";
+      result += "\t\t\thier_paths: ";
       //result += visitexpr(h);
-      result += "\n";
       break;
     case UHDM::uhdmoperation :
-      result += "\t\t\tOPERATION: \n";
+      //result += "\t\t\tOPERATION: ";
       result += visitoperation(h);
-      break;
-    case UHDM::uhdmconstant : //not interesting
-    case UHDM::uhdmparameter : //not interesting
-      //FIXME ignoring ternary possibility in control expressions
-    default: 
-      result += "\t\t\tUnanticipated object in control expr.: ";
-      result += std::to_string(((const uhdm_handle *)h)->type);
       result += "\n";
+      break;
+    case UHDM::uhdmconstant :  //XXX verify that we can skip this; we're priting constants if they appear as part of expressions with ref_objs
+    case UHDM::uhdmparameter : 
+    default: 
+      result += "\t\t\tUnanticipated object in control expr: ";
+      result += std::to_string(((const uhdm_handle *)h)->type);
       break;
   }
   return result;
@@ -225,54 +324,74 @@ std::string visitCond(vpiHandle h) {
 
 std::string visitTernary(vpiHandle h);
 std::string visitStmt(vpiHandle h);
-std::string visitIfElse(vpiHandle h) {
+std::string visitIfElse(vpiHandle h, bool c=false) {
   std::string result = "";
   //result += "Found IfElse/If: ";
   //result += vpi_get_str(vpiFullName, h);
   if(vpiHandle iff = vpi_handle(vpiCondition, h)) {
     result += "\t\t\tFound condition\n";
     result += visitCond(iff);
+    result += "\n";
   } //else result += "No condition found!!\n";
-  if(vpiHandle els = vpi_handle(vpiElseStmt, h)) {
-    //        result += "Else stamtement type: ";
-    //        result += std::to_string(((const uhdm_handle *)els)->type);
-    result += visitIfElse(els);
-  }
+  //XXX useless!!
+  //if(vpiHandle els = vpi_handle(vpiElseStmt, h)) {
+  //  result += "\t\t\tIn Else stamtement type: ";
+  //  result += std::to_string(((const uhdm_handle *)els)->type);
+  //  //result += visitIfElse(els);
+  //  result += "\t\t\tIn Else stamtement exiting\n";
+  //}
   //      else result += "\nNo else statement!\n";
   if(vpiHandle newh = vpi_handle(vpiStmt, h)) {
     result += "STARTING STATEMENT PARSING!\n";
     result += visitStmt(newh);
-    ////XXX Change back newh to h
-    //result += "\t\t\tFound internal statement: ";
-    //result += UHDM::UhdmName(((const uhdm_handle *)newh)->type);
-    //result += "\n";
-    //if(vpiHandle rhs = vpi_handle(vpiRhs, newh)) {
-    //  //Expression
-    //  const int n = vpi_get(vpiOpType, rhs);
-    //  if (n == 32) {
-    //    result += "Found a ternary within if/else statement body: \n";
-    //    result += visitTernary(rhs);
-    //    //res += "\n";
-    //  } else result += "Found not a ternary!\n";
-    //  vpi_release_handle(rhs);
-    //} else {
-    //  result += "\t\t\tLooking to see if this is begin, and can skip this\n";
-    //  if (((const uhdm_handle *)newh)->type == UHDM::uhdmbegin) {
-    //    result += "\t\t\tFound begin, skipping ahead..\n";
-    //    //vpiHandle kh = vpi_handle(vpiStmt, newh);
-    //    //if(vpiHandle krhs = vpi_handle(vpiRhs, kh)) {
-    //    //  const int k = vpi_get(vpiOpType, krhs);
-    //    //  if(k == 32) {
-    //    //    result += "Found a ternary within if/else (after begin) statement body: \n";
-    //    //    result += visitTernary(rhs);
-    //    //    //res += "\n";
-    //    //  } else result += "Found not a ternary after begin!\n";
-    //    //}
-    //  } 
-    //}
-  }
-  else result += "\t\t\tDidn't find internal statements\n";
-  return result;
+  } result += "\t\t\tstatements not found\n";
+  ////XXX Change back newh to h
+  //result += "\t\t\tFound internal statement: ";
+  //result += UHDM::UhdmName(((const uhdm_handle *)newh)->type);
+  //result += "\n";
+  //if(vpiHandle rhs = vpi_handle(vpiRhs, newh)) {
+  //  //Expression
+  //  const int n = vpi_get(vpiOpType, rhs);
+  //  if (n == 32) {
+  //    result += "Found a ternary within if/else statement body: \n";
+  //    result += visitTernary(rhs);
+  //    //res += "\n";
+  //  } else result += "Found not a ternary!\n";
+  //  vpi_release_handle(rhs);
+  //} else {
+  //  result += "\t\t\tLooking to see if this is begin, and can skip this\n";
+  //  if (((const uhdm_handle *)newh)->type == UHDM::uhdmbegin) {
+  //    result += "\t\t\tFound begin, skipping ahead..\n";
+  //    //vpiHandle kh = vpi_handle(vpiStmt, newh);
+  //    //if(vpiHandle krhs = vpi_handle(vpiRhs, kh)) {
+  //    //  const int k = vpi_get(vpiOpType, krhs);
+  //    //  if(k == 32) {
+  //    //    result += "Found a ternary within if/else (after begin) statement body: \n";
+  //    //    result += visitTernary(rhs);
+  //    //    //res += "\n";
+  //    //  } else result += "Found not a ternary after begin!\n";
+  //    //}
+  //  } 
+  //}
+  //}
+if(c) {
+  result += "\t\t\tParsing case items... type: ";
+  result += std::to_string(((const uhdm_handle *)h)->type);
+  vpiHandle newh = vpi_iterate(vpiCaseItem, h);
+  if(newh) {
+    while(vpiHandle sh = vpi_scan(newh)) {
+      result += "\t\t\tFound case item: \n";
+      result += std::to_string(((const uhdm_handle *)sh)->type);
+      //if(vpiHandle s = vpi_handle(vpiStmt, sh))
+      //  result += "\t\t\tFound statement within case item\n";
+      //else 
+      //  result += "\t\t\tFound nothing within case item\n";
+      result += visitStmt(sh);
+    }
+  }else result += "\t\t\tDidn't find internal statements\n";
+}
+
+return result;
 }
 
 
@@ -281,6 +400,7 @@ std::string visitStmt(vpiHandle h) {
   result += std::to_string(((const uhdm_handle *)h)->type);
   result += "\n";
   switch(((const uhdm_handle *)h)->type) {
+    case UHDM::uhdmcase_items : 
     case UHDM::uhdmbegin : {
       //      result += "Found begin statement\n";
       //vpiHandle s = vpi_handle(vpiStmt, h);
@@ -308,14 +428,20 @@ std::string visitStmt(vpiHandle h) {
     }
       case UHDM::uhdmcase_stmt : {
         result += "\t\tCase found\n";
-        result += visitIfElse(h); //TODO have its own condition for checking case item body
+        result += visitIfElse(h, true);
         break;
       }
-      case UHDM::uhdmelse_stmt :
+      //We keep this for beign ablet o parse ternaries
+      //TODO check for "$display/$fwrite only" IF bodies 
+      case UHDM::uhdmelse_stmt : 
       case UHDM::uhdmif_stmt :
       case UHDM::uhdmif_else : { 
         result += "\t\tIf/ElseIf found\n";
         result += visitIfElse(h);
+        if(vpiHandle el = vpi_handle(vpiElseStmt, h)) {
+          result += "\t\tFound else counterpart: \n";
+          result += visitIfElse(el);
+        } else result += "\t\tDidn't find else statement!\n";
         break;
       }
       case UHDM::uhdmalways : {
@@ -338,20 +464,22 @@ std::string visitStmt(vpiHandle h) {
             result += "\t\tOpType:  ";
             result += std::to_string(n);
             result += "\n";
+            //TODO even if the RHS isn't ternary, check if one of the operands is a ternary operation within it.
             if(n == 32) {
               result += "\t\tTernary Operation in Rhs\n";
               result += visitTernary(newh);
+              result += "\n";
             } else if(n== 33) {
               result += "\t\tconcat op in Rhs\n";
               vpiHandle it = vpi_iterate(vpiOperand, newh);
               if(it) {
                 while (vpiHandle aa = vpi_scan(it)) {
                   if(((const uhdm_handle *)aa)->type == UHDM::uhdmoperation) {
-                    //TODO without "first" variable, the below prints all operands of ternary!!
                     const int k = vpi_get(vpiOpType, aa);
                     if(k == 32) {
                       result += "\t\tTernary in concat\n";
                       result += visitTernary(aa);
+                      result += "\n";
                     }
                   }
                 }
@@ -359,7 +487,6 @@ std::string visitStmt(vpiHandle h) {
             }
           } 
         }
-        //TODO ternary operations!!!
         break;
       }
       default : {
@@ -374,7 +501,7 @@ std::string visitStmt(vpiHandle h) {
 
       }
     }
-    return result;
+      return result;
   }
 
   std::string visitTernary(vpiHandle h) {
@@ -384,15 +511,16 @@ std::string visitStmt(vpiHandle h) {
     bool first = true;
     if(opi) {
       while (vpiHandle aa = vpi_scan(opi)) {
-        result += "\t\tObject type: ";// (operation/part_select/constant)
+        //result += "\t\tObject type: ";// (operation/part_select/constant)
         switch(((const uhdm_handle *)aa)->type) {
           case UHDM::uhdmoperation : //ternary and regular operations
             {
               const int n = vpi_get(vpiOpType, aa);
               if(n == 32) {
                 result += "\t\tAnother Ternary Operation\n";
-                result += visitTernary(aa); //TODO camel case
+                result += visitTernary(aa);
               }
+              //TODO again, can be an operation with an operand being ternary
               else
                 result += "\t\tNot a ternary within ternary, but could be an expression\n";
               if(first) {
@@ -408,7 +536,7 @@ std::string visitStmt(vpiHandle h) {
               result += visitref_obj(aa);
               result += "\n";
               first = false;
-            } //else just break
+            } else result += "\n";
             break;
           case UHDM::uhdmpart_select :
             //fetch the ref_obj and print
@@ -417,7 +545,7 @@ std::string visitStmt(vpiHandle h) {
               result += visitpart_sel(aa);
               result += "\n";
               first = false;
-            } //else just break
+            } else result += "\n";
             break;
           case UHDM::uhdmbit_select :
             //fetch the ref_obj and print
@@ -425,12 +553,15 @@ std::string visitStmt(vpiHandle h) {
               result += "\t\tBit_sel\n";
               result += visitbit_sel(aa);
               result += "\n";
-            }
+              first = false;
+            } else result += "\n";
             break;
           case UHDM::uhdmconstant : 
           case UHDM::uhdmparameter :
-            result += "\t\tFound constant or parameter; ignored\n";
-            first = false;
+            if(first) {
+              result += "\t\tFound constant or parameter; ignored\n";
+              first = false;
+            }
             break;
             //ignored either way
             //          result += "Constant\n";
@@ -439,19 +570,22 @@ std::string visitStmt(vpiHandle h) {
             //s_vpi_value value;
             //vpi_get_value(aa, &value);
             //if (value.format) {
-            //  std::string val = std::to_string(value.value.scalar); //TODO can be integer also
+            //  std::string val = std::to_string(value.value.scalar);
             //  result += val;
             //}
           case UHDM::uhdmhier_path :
-            //MAJOR TODO!!! vpiHierPath isn't fully printed!!
-            result += "\t\tFound hierarchical path (struct)\n";
-            //result += vpi_get_str(vpiFullName, aa); 
-            first = false;
+            if(first) {
+              //result += "\t\tFound hierarchical path (STRUCT)\n";
+              result += visithier_path(aa);
+              first = false;
+            } else result += "\n";
             break;
           default: 
-            result += "Unknown type in ternary: ";
-            //TODO concatenations don't show as expressions somehow!
-            result += std::to_string(((const uhdm_handle *)aa)->type);
+            if(first) {
+              result += "Unknown type in ternary: ";
+              //TODO concatenations don't show as expressions somehow!
+              result += std::to_string(((const uhdm_handle *)aa)->type);
+            }
             result += "\n";
             break;
         }
@@ -467,7 +601,6 @@ std::string visitStmt(vpiHandle h) {
 
   std::string visitModulesForNets(vpiHandle mi) {
     std::string result = "AM: Top module found\n";
-    std::string nets = "AM: Nets only:\n";
     while(vpiHandle mh = vpi_scan(mi)) {
       if (vpi_get(vpiType, mh) != vpiModule) {
         result += "ERROR: this is not a module\n";
@@ -495,24 +628,47 @@ std::string visitStmt(vpiHandle h) {
           //", line:" + std::to_string(vpi_get(vpiLineNo, obj_h)) + "\n";
 
           //Nets: TODO indent the prints properly!
-          if(vpiHandle ni = vpi_iterate(vpiNet, obj_h)) {
-            res += "AM: Found nets!!!\n";
+          if(vpiHandle ni = vpi_iterate(vpiVariables, obj_h)) {
+            res += "AM: Found variables!!!\n"; 
             vpiHandle nh;
             while ((nh = vpi_scan(ni)) != NULL) {
               res += "\tAM: In net -> ";
               const char *reg = (vpi_get(vpiNetType, nh) == 48 )  ? "Reg  " : "Wire ";
               res += reg;
-              res += "ScopeType(";
-              if(const char * s = vpi_get_str(vpiResolvedNetType, nh))
-                res += s;
-              else res += "not found";
-              res += ")\n\t\t\t";
+              //res += "ScopeType(";
+              //if(const char * s = vpi_get_str(vpiResolvedNetType, nh))
+              //  res += s;
+              //else res += "not found";
+              //res += ") ";
               res += vpi_get_str(vpiFullName, nh);
               vpiHandle ri;
+              //TODO to print widths properly
+              //res += std::to_string(((const uhdm_handle *)nh)->type);
+              //switch(((const uhdm_handle *)nh)->type) {
+              //  case UHDM::uhdmstruct_var : {
+              //    res += "Finding width of STRUCT:\n";
+              //    vpiHandle mem = vpi_iterate(vpiMember, nh);
+              //    res += std::to_string(vpi_get(vpiSize, mem));
+              //    if(mem) 
+              //      while (vpiHandle memit = vpi_scan(mem)) {
+              //        res += "X";
+              //        res += std::to_string(((const uhdm_handle *)memit)->type);
+              //      }
+              //    else res += "No members found";
+              //    //res += visithier_path(mem);
+              //    break;
+              //  }
+              //  case UHDM::uhdmenum_var :
+              //    break;
+              //  case UHDM::uhdmarray_var :
+              //    break;
+              //  default :
+              //    break;
+              //}
               if((ri = vpi_iterate(vpiRange, nh))) {
                 while (vpiHandle rh = vpi_scan(ri) ) {
                   //res += " Range ";
-                  res += "[";
+                  res += " [";
                   vpiHandle lrh = vpi_handle(vpiLeftRange, rh);
                   res += visitexpr(lrh);
                   res += ":";
@@ -523,7 +679,64 @@ std::string visitStmt(vpiHandle h) {
                   vpi_release_handle(lrh);
                   vpi_release_handle(rrh);
                 }
-              } //else res += "\t\tAM: Bit\n";
+              } else res += " [0]";
+              res += "\n";
+              vpi_release_handle(nh);
+            }
+            res += "\tAM: No more nets found\n";
+            vpi_release_handle(ni);
+          }// else res += "AM: nets not found\n";
+          if(vpiHandle ni = vpi_iterate(vpiNet, obj_h)) {
+            res += "AM: Found nets!!!\n";
+            vpiHandle nh;
+            while ((nh = vpi_scan(ni)) != NULL) {
+              res += "\tAM: In net -> ";
+              const char *reg = (vpi_get(vpiNetType, nh) == 48 )  ? "Reg  " : "Wire ";
+              res += reg;
+              //res += "ScopeType(";
+              //if(const char * s = vpi_get_str(vpiResolvedNetType, nh))
+              //  res += s;
+              //else res += "not found";
+              //res += ") ";
+              res += vpi_get_str(vpiFullName, nh);
+              vpiHandle ri;
+              //TODO to print widths properly
+              //res += std::to_string(((const uhdm_handle *)nh)->type);
+              //switch(((const uhdm_handle *)nh)->type) {
+              //  case UHDM::uhdmstruct_var : {
+              //    res += "Finding width of STRUCT:\n";
+              //    vpiHandle mem = vpi_iterate(vpiMember, nh);
+              //    if(mem) 
+              //      while (vpiHandle memit = vpi_scan(mem)) {
+              //        res += "X";
+              //        res += std::to_string(((const uhdm_handle *)memit)->type);
+              //      }
+              //    else res += "No members found";
+              //    //res += visithier_path(mem);
+              //    break;
+              //  }
+              //  case UHDM::uhdmenum_var :
+              //    break;
+              //  case UHDM::uhdmarray_var :
+              //    break;
+              //  default :
+              //    break;
+              //}
+              if((ri = vpi_iterate(vpiRange, nh))) {
+                while (vpiHandle rh = vpi_scan(ri) ) {
+                  //res += " Range ";
+                  res += " [";
+                  vpiHandle lrh = vpi_handle(vpiLeftRange, rh);
+                  res += visitexpr(lrh);
+                  res += ":";
+                  vpiHandle rrh = vpi_handle(vpiRightRange, rh);
+                  res += visitexpr(rrh);
+                  res += "]";
+                  vpi_release_handle(rh);
+                  vpi_release_handle(lrh);
+                  vpi_release_handle(rrh);
+                }
+              } else res += " [0]";
               res += "\n";
               vpi_release_handle(nh);
             }
@@ -545,7 +758,7 @@ std::string visitStmt(vpiHandle h) {
                   const int n = vpi_get(vpiOpType, rhs);
                   if (n == 32) {
                     res += visitTernary(rhs);
-                    //res += "\n";
+                    res += "\n";
                   }
                   else if (n==33 || n==34) { //concat/multi-concat
                     res += "\tFound concats:\n";
@@ -563,9 +776,9 @@ std::string visitStmt(vpiHandle h) {
           if(abi) {
             D(res += "\tAM: Found always block\n";)
               while(vpiHandle abh = vpi_scan(abi)) {
-                res += "\tAM: In always -> ";// +
-                //  std::string(vpi_get_str(vpiFile, abh)) +
-                //  ", line:" + std::to_string(vpi_get(vpiLineNo, abh)) + "\n";
+                res += "\tAM: In always -> \n";// +
+                //std::string(vpi_get_str(vpiFile, abh)) +
+                //", line:" + std::to_string(vpi_get(vpiLineNo, abh)) + "\n";
                 //function
                 res += visitStmt(abh);
                 vpi_release_handle(abh);
