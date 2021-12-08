@@ -15,7 +15,8 @@
 #define D(x)
 #endif
 
-std::string visitref_obj(vpiHandle h, bool fullName = true) { //TODO change back to false
+//TODO bit_sel within hier_path not working!!!
+std::string visitref_obj(vpiHandle h, bool fullName = true) {
   std::string result = "";
   vpiHandle actual = vpi_handle(vpiActual, h);
   fflush(stdout);
@@ -101,7 +102,7 @@ std::string visitexpr(vpiHandle h) {
 
 std::string visitbit_sel(vpiHandle h, bool fullName = true) {
   std::string result = "";
-  //std::string result = "in bit select  ";
+  //result += "in bit select  ";
   vpiHandle par = vpi_handle(vpiParent, h);
   if(!par) result += "\t\t\tERROR Couldn't find parent of bit_sel!\n";
   result += visitref_obj(par, fullName);
@@ -197,6 +198,7 @@ std::string visitoperation(vpiHandle aa) {
     case 11 : symbol += " -  "; break;
     case 14 : symbol += " == "; break;
     case 15 : symbol += " != "; break;
+    case 16 : symbol += " ==="; break;
     case 18 : symbol += " >  "; break;
     case 19 : symbol += " >= "; break;
     case 20 : symbol += " <  "; break;
@@ -211,6 +213,8 @@ std::string visitoperation(vpiHandle aa) {
     case 29 : symbol += " |  "; break;
     case 30 : symbol += " ^  "; break;
     case 33 : symbol += " ,  "; break;
+    case 67 : symbol += " '( "; break; //TODO
+    case 34 : symbol += "  { "; break;
     default : symbol += " " + std::to_string(type) + " " ; break;
   }
   //result += std::to_string(type) + "(" + symbol + ")";
@@ -224,7 +228,7 @@ std::string visitoperation(vpiHandle aa) {
         if(opCnt == 0)
           result += symbol;
         else result += "HOLD!! unary has a second op?";
-      } else if(type == 33 && opCnt == 0)  
+      } else if((type == 33 || type == 34) && opCnt == 0)  
         result += "{ ";
       switch(((const uhdm_handle *)soph)->type) {
         case UHDM::uhdmbit_select :
@@ -243,8 +247,8 @@ std::string visitoperation(vpiHandle aa) {
           result += visitref_obj(soph);
           break;
         case UHDM::uhdmconstant :
-          //TODO need this when decompiling constnat
-          result += "Constant ignored";
+          //TODO need this when decompiling constant
+          result += std::to_string(vpi_get(vpiDecompile, soph));
           break;
         case UHDM::uhdmhier_path : 
           result += visithier_path(soph);
@@ -259,6 +263,11 @@ std::string visitoperation(vpiHandle aa) {
       if(type != 3 && type != 4  && type != 5 && type != 7)
         if(opCnt == 0)
           result += symbol;
+      if(type == 67 && opCnt == 1)
+        result += " ) ";
+      if(type == 34 && opCnt == 1)
+        result += " } ";
+
       //else if(opCnt >1 )
       //  result += "\nINFO operand num: " + std::to_string(opCnt);
       opCnt++;
@@ -290,11 +299,10 @@ std::string visitCond(vpiHandle h, bool fullName = true) {
       result += visitindexedpart_sel(h);
       break;
       //TODO uncomment to solve issues!
-    //case UHDM::uhdmbit_select :
-    //  std::cout << "\t\t\tbit_sel: \n";
-    //  std::cout << visitbit_sel(h, fullName);
-    //  std::cout << "\n";
-    //  break;
+    case UHDM::uhdmbit_select :
+      //result += "\t\t\tbit_sel: \n";
+      result += visitbit_sel(h, fullName);
+      break;
     case UHDM::uhdmref_obj :
       //result += "\t\t\tref_obj: \n";
       result += visitref_obj(h, fullName);
