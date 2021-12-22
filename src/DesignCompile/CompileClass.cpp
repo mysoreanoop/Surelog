@@ -22,6 +22,14 @@
  */
 #include "DesignCompile/CompileClass.h"
 
+#if (__cplusplus >= 201703L) && __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
 #include <string.h>
 
 #include <stack>
@@ -57,7 +65,10 @@ bool CompileClass::compile() {
   NodeId nodeId = m_class->m_nodeIds[0];
 
   std::string fileName = fC->getFileName(nodeId);
-  if (strstr(fileName.c_str(), "/bin/sv/builtin.sv")) {
+  const std::string separator(1, fs::path::preferred_separator);
+  if (strstr(fileName.c_str(), std::string(separator + "bin" + separator +
+                                           "sv" + separator + "builtin.sv")
+                                   .c_str())) {
     fileName = "builtin.sv";
   }
   std::string fullName;
@@ -848,17 +859,19 @@ bool CompileClass::compile_class_parameters_(const FileContent* fC, NodeId id) {
     NodeId parameter_port_declaration = fC->Child(paramList);
     while (parameter_port_declaration) {
       NodeId list_of_type_assignments = fC->Child(parameter_port_declaration);
+      NodeId type = fC->Child(list_of_type_assignments);
       if (fC->Type(list_of_type_assignments) == slList_of_type_assignments ||
           fC->Type(list_of_type_assignments) == slType) {
         // Type param
         m_helper.compileParameterDeclaration(
             m_class, fC, list_of_type_assignments, m_compileDesign, false,
             nullptr, false, false, false);
-
+      } else if (fC->Type(type) == slType) {
+        // Handled in compile_parameter_declaration_
       } else {
         // Regular param
         m_helper.compileParameterDeclaration(
-            m_class, fC, list_of_type_assignments, m_compileDesign, false,
+            m_class, fC, parameter_port_declaration, m_compileDesign, false,
             nullptr, false, false, false);
       }
       parameter_port_declaration = fC->Sibling(parameter_port_declaration);

@@ -211,7 +211,7 @@ bool ErrorDefinition::init() {
   rec(PP_MACRO_NO_DEFAULT_VALUE, ERROR, PP,
       "Macro instantiation omits argument %exobj for \"%s\"",
       "%exloc No default value for argument %exobj in macro definition");
-  rec(PP_MACRO_PARENTHESIS_NEEDED, WARNING, PP,
+  rec(PP_MACRO_PARENTHESIS_NEEDED, ERROR, PP,
       "Macro instantiation omits parenthesis for \"%s\"",
       "%exloc macro definition has arguments");
   rec(PP_MACRO_NAME_RESERVED, ERROR, PP,
@@ -241,6 +241,8 @@ bool ErrorDefinition::init() {
       "Illegal directive `elseif, correct directive is `elsif");
   rec(PP_CANNOT_READ_FILE_CONTENT, ERROR, PP,
       "Cannot read the file's content \"%s\". Only UTF-8 is supported");
+  rec(PP_NON_ASCII_CONTENT, NOTE, PP,
+      "Non ASCII character detected, replaced by space \"%s\"");
   rec(PP_RECURSIVE_INCLUDE_DIRECTIVE, FATAL, PP,
       "Recursive include directive for file \"%s\"");
   rec(PP_ILLEGAL_TICK_LINE_VALUE, ERROR, PP,
@@ -324,13 +326,14 @@ bool ErrorDefinition::init() {
       "Undefined system task/function \"$%s\"");
   rec(COMP_UNDEFINED_USER_FUNCTION, ERROR, COMP,
       "Undefined user task/function \"%s\"");
-  rec(COMP_MULTIPLY_DEFINED_DESIGN_UNIT, ERROR, COMP,
+  rec(COMP_MULTIPLY_DEFINED_DESIGN_UNIT, WARNING, COMP,
       "Colliding compilation unit name: \"%s\"", "%exloc previous usage");
   rec(COMP_COMPILE_GENERATE_BLOCK, INFO, COMP, "Compile generate block \"%s\"");
   rec(COMP_INTERNAL_ERROR_OUT_OF_BOUND, ERROR, COMP,
       "Internal out of bound error");
   rec(COMP_CANNOT_REDEFINE_BUILTIN_METHOD, ERROR, COMP,
       "Cannot override builtin method: %s");
+  rec(COMP_ILLEGAL_TIMESCALE, ERROR, COMP, "Illegal timescale: %s");
   rec(PY_PROCESSING_SOURCE_FILE, INFO, PYTH, "Processing source file \"%s\"");
   rec(PY_NO_PYTHON_LISTENER_FOUND, FATAL, PYTH,
       "No Python listener found (slSV3_1aPythonListener.py)");

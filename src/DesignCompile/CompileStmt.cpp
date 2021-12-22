@@ -55,7 +55,8 @@ any* CompileHelper::searchObjectName(const std::string& name,
                                      DesignComponent* component,
                                      CompileDesign* compileDesign, any* stmt) {
   any* object = nullptr;
-  auto [func, actual_comp] = getTaskFunc(name, component, compileDesign, stmt);
+  auto [func, actual_comp] =
+      getTaskFunc(name, component, compileDesign, nullptr, stmt);
   if (func) {
     object = func;
   }
@@ -180,6 +181,13 @@ VectorOfany* CompileHelper::compileStmt(DesignComponent* component,
       stmt = cstmt;
       break;
     }
+    case VObjectType::slRandcase_statement: {
+      NodeId Case_statement = the_stmt;
+      UHDM::atomic_stmt* cstmt = compileRandcaseStmt(
+          component, fC, Case_statement, compileDesign, pstmt, instance);
+      stmt = cstmt;
+      break;
+    }
     case VObjectType::slCase_statement: {
       NodeId Case_statement = the_stmt;
       UHDM::atomic_stmt* cstmt = compileCaseStmt(
@@ -227,6 +235,14 @@ VectorOfany* CompileHelper::compileStmt(DesignComponent* component,
                 vars->push_back((UHDM::variables*)assign->Lhs());
                 ((variables*)assign->Lhs())->VpiParent(stmt);
               }
+            } else if (cstmt->UhdmType() == uhdmsequence_decl) {
+              VectorOfsequence_decl* decls = scope->Sequence_decls();
+              if (decls == nullptr) {
+                decls = s.MakeSequence_declVec();
+                scope->Sequence_decls(decls);
+              }
+              decls->push_back((sequence_decl*)cstmt);
+              isDecl = true;
             }
             if (!isDecl) {
               stmts->push_back(cstmt);
@@ -611,6 +627,21 @@ VectorOfany* CompileHelper::compileStmt(DesignComponent* component,
       stmt = cstmt;
       break;
     }
+    case VObjectType::slRandsequence_statement: {
+      NodeId Name = fC->Child(the_stmt);
+      sequence_decl* seqdecl = s.MakeSequence_decl();
+      if (Name) {
+        const std::string& name = fC->SymName(Name);
+        seqdecl->VpiName(name);
+      }
+      stmt = seqdecl;
+      break;
+    }
+    case VObjectType::slChecker_instantiation: {
+      stmt = compileCheckerInstantiation(component, fC, fC->Child(the_stmt),
+                                         compileDesign, pstmt, nullptr);
+      break;
+    }
     case VObjectType::slSimple_immediate_assertion_statement: {
       stmt = compileSimpleImmediateAssertion(component, fC, fC->Child(the_stmt),
                                              compileDesign, pstmt, nullptr);
@@ -909,6 +940,46 @@ UHDM::atomic_stmt* CompileHelper::compileEventControlStmt(
   return event;
 }
 
+UHDM::atomic_stmt* CompileHelper::compileRandcaseStmt(
+    DesignComponent* component, const FileContent* fC, NodeId nodeId,
+    CompileDesign* compileDesign, UHDM::any* pstmt,
+    ValuedComponentI* instance) {
+  UHDM::Serializer& s = compileDesign->getSerializer();
+  UHDM::atomic_stmt* result = nullptr;
+  NodeId RandCase = fC->Child(nodeId);
+  UHDM::case_stmt* case_stmt = s.MakeCase_stmt();
+  case_stmt->VpiRandType(vpiRand);
+  UHDM::VectorOfcase_item* case_items = s.MakeCase_itemVec();
+  case_stmt->Case_items(case_items);
+  result = case_stmt;
+  while (RandCase) {
+    NodeId Expression = fC->Child(RandCase);
+    UHDM::case_item* case_item = s.MakeCase_item();
+    case_items->push_back(case_item);
+    VectorOfany* exprs = s.MakeAnyVec();
+    case_item->VpiExprs(exprs);
+    UHDM::any* item_exp = compileExpression(component, fC, Expression,
+                                            compileDesign, pstmt, instance);
+    setParentNoOverride(item_exp, case_item);
+    if (item_exp) {
+      exprs->push_back(item_exp);
+    }
+    NodeId stmt = fC->Sibling(Expression);
+    VectorOfany* stmts =
+        compileStmt(component, fC, stmt, compileDesign, case_item, instance);
+    if (stmts) {
+      any* stmt = (*stmts)[0];
+      stmt->VpiParent(case_item);
+      case_item->Stmt(stmt);
+    }
+    RandCase = fC->Sibling(RandCase);
+    if (fC->Type(RandCase) == slEndcase) {
+      break;
+    }
+  }
+  return result;
+}
+
 UHDM::atomic_stmt* CompileHelper::compileCaseStmt(DesignComponent* component,
                                                   const FileContent* fC,
                                                   NodeId nodeId,
@@ -1111,9 +1182,9 @@ n<> u<142> t<Tf_item_declaration> p<386> c<141> s<384> l<28>
 
         NodeId List_of_tf_variable_identifiers =
             fC->Sibling(Data_type_or_implicit);
-        while (List_of_tf_variable_identifiers) {
+        NodeId nameId = fC->Child(List_of_tf_variable_identifiers);
+        while (nameId) {
           VectorOfrange* ranges = nullptr;
-          NodeId nameId = fC->Child(List_of_tf_variable_identifiers);
           NodeId Variable_dimension = fC->Sibling(nameId);
           if (fC->Type(Variable_dimension) == slVariable_dimension) {
             int size;
@@ -1136,8 +1207,10 @@ n<> u<142> t<Tf_item_declaration> p<386> c<141> s<384> l<28>
           decl->VpiEndLineNo(fC->EndLine(nameId));
           decl->VpiEndColumnNo(fC->EndColumn(nameId));
           decl->Ranges(ranges);
-          List_of_tf_variable_identifiers =
-              fC->Sibling(List_of_tf_variable_identifiers);
+          if (fC->Type(Variable_dimension) == slVariable_dimension) {
+            nameId = fC->Sibling(nameId);
+          }
+          nameId = fC->Sibling(nameId);
         }
       } else if (fC->Type(Tf_port_declaration) == slBlock_item_declaration) {
         NodeId Data_declaration = fC->Child(Tf_port_declaration);
@@ -1293,6 +1366,7 @@ NodeId CompileHelper::setFuncTaskQualifiers(const FileContent* fC,
          (func_type == VObjectType::slExtern_qualifier) ||
          (func_type == VObjectType::slClassItemQualifier_Protected) ||
          (func_type == VObjectType::slLifetime_Automatic) ||
+         (func_type == VObjectType::slLifetime_Static) ||
          (func_type == VObjectType::slDpi_import_export) ||
          (func_type == VObjectType::slPure_keyword) ||
          (func_type == VObjectType::slImport) ||
@@ -1344,6 +1418,10 @@ NodeId CompileHelper::setFuncTaskQualifiers(const FileContent* fC,
       func_decl = fC->Sibling(func_decl);
       func_type = fC->Type(func_decl);
       if (func) func->VpiAutomatic(true);
+    }
+    if (func_type == VObjectType::slLifetime_Static) {
+      func_decl = fC->Sibling(func_decl);
+      func_type = fC->Type(func_decl);
     }
     if (func_type == VObjectType::slClassItemQualifier_Protected) {
       is_protected = true;
@@ -2588,4 +2666,21 @@ void CompileHelper::compileBindStmt(DesignComponent* component,
                                 Instance_target, Source_scope, Instance_name);
   compileDesign->getCompiler()->getDesign()->addBindStmt(fullName, bind);
 }
+
+UHDM::any* CompileHelper::compileCheckerInstantiation(
+    DesignComponent* component, const FileContent* fC, NodeId nodeId,
+    CompileDesign* compileDesign, UHDM::any* pstmt,
+    ValuedComponentI* instance) {
+  UHDM::Serializer& s = compileDesign->getSerializer();
+  UHDM::checker_inst* result = s.MakeChecker_inst();
+  NodeId Ps_identifier = fC->Child(nodeId);
+  const std::string& CheckerName = fC->SymName(Ps_identifier);
+  result->VpiDefName(CheckerName);
+  NodeId Name_of_instance = fC->Sibling(nodeId);
+  NodeId InstanceName = fC->Child(Name_of_instance);
+  const std::string& InstName = fC->SymName(InstanceName);
+  result->VpiName(InstName);
+  return result;
+}
+
 }  // namespace SURELOG

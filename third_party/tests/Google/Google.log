@@ -281,9 +281,11 @@ Processing: -cd chapter-5 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -n
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-5 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 5.7.1--integers-unsized-illegal.sv -l 5.7.1--integers-unsized-illegal.sv.log
+[ERR:CP0339] 5.7.1--integers-unsized-illegal.sv:20: Illegal timescale: af.
+
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 0
+[  ERROR] : 1
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-5 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 5.10-structures.sv -l 5.10-structures.sv.log
@@ -2071,13 +2073,13 @@ Processing: -cd chapter-22 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-22 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 22.5.1--define-expansion_18.sv -l 22.5.1--define-expansion_18.sv.log
-[WRN:PP0110] 22.5.1--define-expansion_18.sv:19: Macro instantiation omits parenthesis for "MACRO3",
+[ERR:PP0110] 22.5.1--define-expansion_18.sv:19: Macro instantiation omits parenthesis for "MACRO3",
              22.5.1--define-expansion_18.sv:17: macro definition has arguments.
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 0
-[WARNING] : 1
+[  ERROR] : 1
+[WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-22 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 22.11--pragma-invalid.sv -l 22.11--pragma-invalid.sv.log
 [SNT:PP0106] 22.11--pragma-invalid.sv:17:7: Syntax error: mismatched input '\n' expecting Spaces,
@@ -2665,11 +2667,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_message_defines.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-prec-uvm.sv -l 16.12--property-prec-uvm.sv.log
@@ -2731,19 +2731,15 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.9--sequence-cons-repetition.sv -l 16.9--sequence-cons-repetition.sv.log
-[ERR:UH0703] 16.9--sequence-cons-repetition.sv:26:18: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assert-uvm.sv -l 16.2--assert-uvm.sv.log
@@ -2785,11 +2781,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--property-local-var-fail.sv -l 16.10--property-local-var-fail.sv.log
-[ERR:UH0703] 16.10--property-local-var-fail.sv:68:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--cover.sv -l 16.2--cover.sv.log
@@ -2825,11 +2819,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.15--property-iff-uvm-fail.sv -l 16.15--property-iff-uvm-fail.sv.log
@@ -2859,11 +2851,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] 16.15--property-iff-uvm-fail.sv:95:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-iff.sv -l 16.12--property-iff.sv.log
@@ -2913,11 +2903,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--sequence-local-var.sv -l 16.10--sequence-local-var.sv.log
-[ERR:UH0703] 16.10--sequence-local-var.sv:67:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.7--sequence-and-range-uvm.sv -l 16.7--sequence-and-range-uvm.sv.log
@@ -2947,11 +2935,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.14--assume-property.sv -l 16.14--assume-property.sv.log
@@ -2993,11 +2979,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.15--property-disable-iff.sv -l 16.15--property-disable-iff.sv.log
-[ERR:UH0703] 16.15--property-disable-iff.sv:53:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-disable-iff.sv -l 16.12--property-disable-iff.sv.log
@@ -3045,19 +3029,15 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--property-local-var.sv -l 16.10--property-local-var.sv.log
-[ERR:UH0703] 16.10--property-local-var.sv:67:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.7--sequence.sv -l 16.7--sequence.sv.log
-[ERR:UH0703] 16.7--sequence.sv:26:18: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--property-local-var-uvm.sv -l 16.10--property-local-var-uvm.sv.log
@@ -3087,11 +3067,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.14--assume-property-uvm-fail.sv -l 16.14--assume-property-uvm-fail.sv.log
@@ -3153,11 +3131,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assert0.sv -l 16.2--assert0.sv.log
@@ -3167,11 +3143,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.9--sequence-noncons-repetition.sv -l 16.9--sequence-noncons-repetition.sv.log
-[ERR:UH0703] 16.9--sequence-noncons-repetition.sv:26:18: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assume0.sv -l 16.2--assume0.sv.log
@@ -3213,11 +3187,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.11--sequence-subroutine-uvm.sv -l 16.11--sequence-subroutine-uvm.sv.log
@@ -3247,11 +3219,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.17--expect.sv -l 16.17--expect.sv.log
@@ -3305,11 +3275,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.15--property-disable-iff-fail.sv -l 16.15--property-disable-iff-fail.sv.log
-[ERR:UH0703] 16.15--property-disable-iff-fail.sv:54:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.7--sequence-uvm-fail.sv -l 16.7--sequence-uvm-fail.sv.log
@@ -3339,11 +3307,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--property-local-var-uvm-fail.sv -l 16.10--property-local-var-uvm-fail.sv.log
@@ -3373,11 +3339,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.17--expect-uvm-fail.sv -l 16.17--expect-uvm-fail.sv.log
@@ -3447,11 +3411,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] 16.15--property-iff-uvm.sv:95:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-prec.sv -l 16.12--property-prec.sv.log
@@ -3487,11 +3449,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property.sv -l 16.12--property.sv.log
@@ -3527,11 +3487,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.7--sequence-or-uvm.sv -l 16.7--sequence-or-uvm.sv.log
@@ -3561,11 +3519,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.9--sequence-past-uvm.sv -l 16.9--sequence-past-uvm.sv.log
@@ -3595,11 +3551,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assume-uvm-fail.sv -l 16.2--assume-uvm-fail.sv.log
@@ -3661,11 +3615,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (hier_path) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.9--sequence-changed-uvm.sv -l 16.9--sequence-changed-uvm.sv.log
@@ -3695,11 +3647,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:116:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-uvm-fail.sv -l 16.12--property-uvm-fail.sv.log
@@ -3825,11 +3775,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assert-final.sv -l 16.2--assert-final.sv.log
@@ -3839,11 +3787,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.9--sequence-goto-repetition.sv -l 16.9--sequence-goto-repetition.sv.log
-[ERR:UH0703] 16.9--sequence-goto-repetition.sv:26:18: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.2--assume.sv -l 16.2--assume.sv.log
@@ -3949,11 +3895,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-disj.sv -l 16.12--property-disj.sv.log
@@ -3963,11 +3907,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.10--sequence-local-var-fail.sv -l 16.10--sequence-local-var-fail.sv.log
-[ERR:UH0703] 16.10--sequence-local-var-fail.sv:68:22: Internal Error: adding wrong object type (ref_obj) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.7--sequence-throughout-uvm.sv -l 16.7--sequence-throughout-uvm.sv.log
@@ -3997,11 +3939,9 @@ Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0703] ../../../UVM/1800.2-2017-1.0/src/uvm_macros.svh:152:22: Internal Error: adding wrong object type (hier_path) in a property_expr_group group!.
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 1
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-16 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 16.12--property-interface-prec-uvm.sv -l 16.12--property-interface-prec-uvm.sv.log
@@ -6670,7 +6610,7 @@ Processing: -cd generic/class -I../../../../UVM/1800.2-2017-1.0/src/  -parse -no
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd generic/class -I../../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns class_test_27.sv -l class_test_27.sv.log
-[ERR:UH0700] class_test_27.sv:16: Unsupported expression "<n<> u<0> t<Null_rule> p<50> s<49> l<16:1> el<14:5>> package Package;
+[ERR:UH0700] class_test_27.sv:16: Unsupported expression "<n<> u<0> t<Null_rule> p<51> s<50> l<16:1> el<14:5>> package Package;
 ".
 
 [  FATAL] : 0
@@ -7536,21 +7476,9 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_3.sv:29: Unsupported statement "<n<> u<136> t<Randsequence_statement> p<137> c<68> l<29:7> el<33:18>>       randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_3.sv:29: Unsupported statement "<n<> u<137> t<Statement_item> p<138> c<136> l<29:7> el<33:18>>       randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_3.sv:29: Unsupported statement "<n<> u<138> t<Statement> p<139> c<137> l<29:7> el<33:18>>       randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_3.sv:29: Unsupported statement "<n<> u<139> t<Statement_or_null> p<315> c<138> s<313> l<29:7> el<33:18>>       randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.15--manually-seeding-randomize_1.sv -l 18.15--manually-seeding-randomize_1.sv.log
@@ -7564,14 +7492,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7579,6 +7499,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [ERR:CP0332] 18.15--manually-seeding-randomize_1.sv:22: Function "srandom" is not defined for variable "this" of type work@a,
              18.15--manually-seeding-randomize_1.sv:19: type definition.
@@ -7589,18 +7517,9 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.5--interleaving-productions-rand-join_2.sv -l 18.17.5--interleaving-productions-rand-join_2.sv.log
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_2.sv:18: Unsupported statement "<n<> u<82> t<Randsequence_statement> p<83> c<14> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_2.sv:18: Unsupported statement "<n<> u<83> t<Statement_item> p<84> c<82> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_2.sv:18: Unsupported statement "<n<> u<84> t<Statement> p<85> c<83> l<18:5> el<22:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.7--in-line-constraints--randomize_1.sv -l 18.7--in-line-constraints--randomize_1.sv.log
@@ -7620,14 +7539,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7635,6 +7546,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -7652,14 +7571,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7667,6 +7578,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -7684,14 +7603,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7699,6 +7610,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -7716,14 +7635,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7731,6 +7642,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [ERR:CP0332] 18.14.3--object-stability_1.sv:22: Function "srandom" is not defined for variable "this" of type work@a1,
              18.14.3--object-stability_1.sv:19: type definition.
@@ -7744,18 +7663,9 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.1--random-production-weights_0.sv -l 18.17.1--random-production-weights_0.sv.log
-[ERR:UH0701] 18.17.1--random-production-weights_0.sv:18: Unsupported statement "<n<> u<80> t<Randsequence_statement> p<81> c<14> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.1--random-production-weights_0.sv:18: Unsupported statement "<n<> u<81> t<Statement_item> p<82> c<80> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.1--random-production-weights_0.sv:18: Unsupported statement "<n<> u<82> t<Statement> p<83> c<81> l<18:5> el<22:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.13.2--urandom_range_1.sv -l 18.13.2--urandom_range_1.sv.log
@@ -7769,14 +7679,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7784,6 +7686,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -7801,14 +7711,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7816,6 +7718,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -7833,14 +7743,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7849,21 +7751,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_1.sv:30: Unsupported statement "<n<> u<207> t<Randsequence_statement> p<208> c<81> l<30:7> el<36:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_1.sv:30: Unsupported statement "<n<> u<208> t<Statement_item> p<209> c<207> l<30:7> el<36:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_1.sv:30: Unsupported statement "<n<> u<209> t<Statement> p<210> c<208> l<30:7> el<36:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_1.sv:30: Unsupported statement "<n<> u<210> t<Statement_or_null> p<386> c<209> s<384> l<30:7> el<36:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.11--static-constraint-blocks_1.sv -l 18.5.11--static-constraint-blocks_1.sv.log
@@ -7877,14 +7775,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7892,6 +7782,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [ERR:EL0514] 18.5.11--static-constraint-blocks_1.sv:34: Undefined variable: c1.
 
@@ -7911,14 +7809,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7927,21 +7817,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_1.sv:29: Unsupported statement "<n<> u<132> t<Randsequence_statement> p<133> c<68> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_1.sv:29: Unsupported statement "<n<> u<133> t<Statement_item> p<134> c<132> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_1.sv:29: Unsupported statement "<n<> u<134> t<Statement> p<135> c<133> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_1.sv:29: Unsupported statement "<n<> u<135> t<Statement_or_null> p<311> c<134> s<309> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.7.1--local-scope-resolution_0.sv -l 18.7.1--local-scope-resolution_0.sv.log
@@ -7961,14 +7847,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -7976,6 +7854,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8005,14 +7891,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8020,6 +7898,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8037,14 +7923,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8052,6 +7930,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8069,14 +7955,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8084,6 +7962,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8101,14 +7987,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8116,6 +7994,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8157,14 +8043,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8172,6 +8050,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8189,14 +8075,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8205,24 +8083,23 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.5--interleaving-productions-rand-join_0.sv -l 18.17.5--interleaving-productions-rand-join_0.sv.log
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_0.sv:18: Unsupported statement "<n<> u<78> t<Randsequence_statement> p<79> c<14> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_0.sv:18: Unsupported statement "<n<> u<79> t<Statement_item> p<80> c<78> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.5--interleaving-productions-rand-join_0.sv:18: Unsupported statement "<n<> u<80> t<Statement> p<81> c<79> l<18:5> el<22:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.9--global-constraints_1.sv -l 18.5.9--global-constraints_1.sv.log
@@ -8236,14 +8113,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8252,24 +8121,23 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17--random-sequence-generation-randsequence_2.sv -l 18.17--random-sequence-generation-randsequence_2.sv.log
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_2.sv:18: Unsupported statement "<n<> u<72> t<Randsequence_statement> p<73> c<14> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_2.sv:18: Unsupported statement "<n<> u<73> t<Statement_item> p<74> c<72> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_2.sv:18: Unsupported statement "<n<> u<74> t<Statement> p<75> c<73> l<18:5> el<22:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.1--random-production-weights_1.sv -l 18.17.1--random-production-weights_1.sv.log
@@ -8283,14 +8151,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8299,21 +8159,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.1--random-production-weights_1.sv:29: Unsupported statement "<n<> u<134> t<Randsequence_statement> p<135> c<68> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.1--random-production-weights_1.sv:29: Unsupported statement "<n<> u<135> t<Statement_item> p<136> c<134> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.1--random-production-weights_1.sv:29: Unsupported statement "<n<> u<136> t<Statement> p<137> c<135> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.1--random-production-weights_1.sv:29: Unsupported statement "<n<> u<137> t<Statement_or_null> p<315> c<136> s<313> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.14.1--soft-constraint-priorities_2.sv -l 18.5.14.1--soft-constraint-priorities_2.sv.log
@@ -8333,14 +8189,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8348,6 +8196,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8383,14 +8239,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8398,6 +8246,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8415,14 +8271,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8431,21 +8279,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_3.sv:30: Unsupported statement "<n<> u<146> t<Randsequence_statement> p<147> c<81> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_3.sv:30: Unsupported statement "<n<> u<147> t<Statement_item> p<148> c<146> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_3.sv:30: Unsupported statement "<n<> u<148> t<Statement> p<149> c<147> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_3.sv:30: Unsupported statement "<n<> u<149> t<Statement_or_null> p<325> c<148> s<323> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5--constraint-blocks_1.sv -l 18.5--constraint-blocks_1.sv.log
@@ -8459,14 +8303,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8474,6 +8310,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8506,14 +8350,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8522,21 +8358,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_1.sv:30: Unsupported statement "<n<> u<136> t<Randsequence_statement> p<137> c<81> l<30:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_1.sv:30: Unsupported statement "<n<> u<137> t<Statement_item> p<138> c<136> l<30:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_1.sv:30: Unsupported statement "<n<> u<138> t<Statement> p<139> c<137> l<30:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.2--if-else-production-statements_1.sv:30: Unsupported statement "<n<> u<139> t<Statement_or_null> p<315> c<138> s<313> l<30:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.1--explicit-external-constraint_1.sv -l 18.5.1--explicit-external-constraint_1.sv.log
@@ -8562,14 +8394,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8577,6 +8401,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8590,18 +8422,9 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.2--if-else-production-statements_0.sv -l 18.17.2--if-else-production-statements_0.sv.log
-[ERR:UH0701] 18.17.2--if-else-production-statements_0.sv:18: Unsupported statement "<n<> u<69> t<Randsequence_statement> p<70> c<14> l<18:5> el<21:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.2--if-else-production-statements_0.sv:18: Unsupported statement "<n<> u<70> t<Statement_item> p<71> c<69> l<18:5> el<21:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.2--if-else-production-statements_0.sv:18: Unsupported statement "<n<> u<71> t<Statement> p<72> c<70> l<18:5> el<21:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.6.2--post-randomize_method_0.sv -l 18.6.2--post-randomize_method_0.sv.log
@@ -8621,14 +8444,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8637,51 +8452,29 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.7--value-passing-between-productions_1.sv:29: Unsupported statement "<n<> u<152> t<Randsequence_statement> p<153> c<68> l<29:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.7--value-passing-between-productions_1.sv:29: Unsupported statement "<n<> u<153> t<Statement_item> p<154> c<152> l<29:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.7--value-passing-between-productions_1.sv:29: Unsupported statement "<n<> u<154> t<Statement> p<155> c<153> l<29:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.7--value-passing-between-productions_1.sv:29: Unsupported statement "<n<> u<155> t<Statement_or_null> p<331> c<154> s<329> l<29:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.2--if-else-production-statements_2.sv -l 18.17.2--if-else-production-statements_2.sv.log
-[ERR:UH0701] 18.17.2--if-else-production-statements_2.sv:18: Unsupported statement "<n<> u<79> t<Randsequence_statement> p<80> c<14> l<18:5> el<23:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.2--if-else-production-statements_2.sv:18: Unsupported statement "<n<> u<80> t<Statement_item> p<81> c<79> l<18:5> el<23:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.2--if-else-production-statements_2.sv:18: Unsupported statement "<n<> u<81> t<Statement> p<82> c<80> l<18:5> el<23:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.16--random-weighted-case-randcase_0.sv -l 18.16--random-weighted-case-randcase_0.sv.log
-[ERR:UH0701] 18.16--random-weighted-case-randcase_0.sv:18: Unsupported statement "<n<> u<55> t<Randcase_statement> p<56> c<33> l<18:5> el<21:12>>     randcase
-".
-
-[ERR:UH0701] 18.16--random-weighted-case-randcase_0.sv:18: Unsupported statement "<n<> u<56> t<Statement_item> p<57> c<55> l<18:5> el<21:12>>     randcase
-".
-
-[ERR:UH0701] 18.16--random-weighted-case-randcase_0.sv:18: Unsupported statement "<n<> u<57> t<Statement> p<58> c<56> l<18:5> el<21:12>>     randcase
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.7--if-else-constraints_3.sv -l 18.5.7--if-else-constraints_3.sv.log
@@ -8701,14 +8494,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8716,6 +8501,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8733,14 +8526,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8748,6 +8533,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8765,14 +8558,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8780,6 +8565,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8797,14 +8590,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8812,6 +8597,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8841,14 +8634,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8856,6 +8641,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8873,14 +8666,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8889,18 +8674,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_3.sv:21: Unsupported statement "<n<> u<80> t<Randcase_statement> p<81> c<52> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_3.sv:21: Unsupported statement "<n<> u<81> t<Statement_item> p<82> c<80> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_3.sv:21: Unsupported statement "<n<> u<82> t<Statement> p<83> c<81> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.14.1--soft-constraint-priorities_3.sv -l 18.5.14.1--soft-constraint-priorities_3.sv.log
@@ -8914,14 +8698,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8929,6 +8705,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8946,14 +8730,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -8961,6 +8737,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -8980,18 +8764,9 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.4--repeat-production-statements_0.sv -l 18.17.4--repeat-production-statements_0.sv.log
-[ERR:UH0701] 18.17.4--repeat-production-statements_0.sv:18: Unsupported statement "<n<> u<62> t<Randsequence_statement> p<63> c<14> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.4--repeat-production-statements_0.sv:18: Unsupported statement "<n<> u<63> t<Statement_item> p<64> c<62> l<18:5> el<22:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.4--repeat-production-statements_0.sv:18: Unsupported statement "<n<> u<64> t<Statement> p<65> c<63> l<18:5> el<22:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.1--explicit-external-constraint_0.sv -l 18.5.1--explicit-external-constraint_0.sv.log
@@ -9011,14 +8786,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9026,6 +8793,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9057,14 +8832,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9072,6 +8839,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9089,14 +8864,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9105,18 +8872,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_1.sv:21: Unsupported statement "<n<> u<62> t<Randcase_statement> p<63> c<40> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_1.sv:21: Unsupported statement "<n<> u<63> t<Statement_item> p<64> c<62> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.16--random-weighted-case-randcase_1.sv:21: Unsupported statement "<n<> u<64> t<Statement> p<65> c<63> l<21:5> el<24:12>>     randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.8--disabling-random-variables-with-rand_mode_5.sv -l 18.8--disabling-random-variables-with-rand_mode_5.sv.log
@@ -9130,14 +8896,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9146,9 +8904,19 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
+[ERR:CP0338] 18.8--disabling-random-variables-with-rand_mode_5.sv:23:18: Cannot override builtin method: rand_mode.
+
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 0
+[  ERROR] : 1
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17--random-sequence-generation-randsequence_3.sv -l 18.17--random-sequence-generation-randsequence_3.sv.log
@@ -9162,14 +8930,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9178,21 +8938,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_3.sv:29: Unsupported statement "<n<> u<126> t<Randsequence_statement> p<127> c<68> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_3.sv:29: Unsupported statement "<n<> u<127> t<Statement_item> p<128> c<126> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_3.sv:29: Unsupported statement "<n<> u<128> t<Statement> p<129> c<127> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_3.sv:29: Unsupported statement "<n<> u<129> t<Statement_or_null> p<319> c<128> s<317> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.7--if-else-constraints_0.sv -l 18.5.7--if-else-constraints_0.sv.log
@@ -9218,14 +8974,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9233,6 +8981,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9250,14 +9006,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9265,6 +9013,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9282,14 +9038,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9297,6 +9045,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9314,14 +9070,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9330,36 +9078,23 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.4--repeat-production-statements_1.sv:29: Unsupported statement "<n<> u<116> t<Randsequence_statement> p<117> c<68> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.4--repeat-production-statements_1.sv:29: Unsupported statement "<n<> u<117> t<Statement_item> p<118> c<116> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.4--repeat-production-statements_1.sv:29: Unsupported statement "<n<> u<118> t<Statement> p<119> c<117> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.4--repeat-production-statements_1.sv:29: Unsupported statement "<n<> u<119> t<Statement_or_null> p<295> c<118> s<293> l<29:7> el<33:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.16--random-weighted-case-randcase_2.sv -l 18.16--random-weighted-case-randcase_2.sv.log
-[ERR:UH0701] 18.16--random-weighted-case-randcase_2.sv:18: Unsupported statement "<n<> u<73> t<Randcase_statement> p<74> c<45> l<18:5> el<21:12>>     randcase
-".
-
-[ERR:UH0701] 18.16--random-weighted-case-randcase_2.sv:18: Unsupported statement "<n<> u<74> t<Statement_item> p<75> c<73> l<18:5> el<21:12>>     randcase
-".
-
-[ERR:UH0701] 18.16--random-weighted-case-randcase_2.sv:18: Unsupported statement "<n<> u<75> t<Statement> p<76> c<74> l<18:5> el<21:12>>     randcase
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.14.2--thread-stability_0.sv -l 18.14.2--thread-stability_0.sv.log
@@ -9373,14 +9108,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9388,6 +9115,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9405,14 +9140,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9420,6 +9147,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9437,14 +9172,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9452,6 +9179,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9475,14 +9210,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9491,33 +9218,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.14--random-stability_3.sv:33: Unsupported statement "<n<> u<225> t<Randcase_statement> p<226> c<143> l<33:7> el<39:14>>       randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.14--random-stability_3.sv:33: Unsupported statement "<n<> u<226> t<Statement_item> p<227> c<225> l<33:7> el<39:14>>       randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.14--random-stability_3.sv:33: Unsupported statement "<n<> u<227> t<Statement> p<228> c<226> l<33:7> el<39:14>>       randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.14--random-stability_3.sv:33: Unsupported statement "<n<> u<228> t<Statement_or_null> p<530> c<227> s<241> l<33:7> el<39:14>>       randcase
-".
-
-[ERR:UH0701] 18.14--random-stability_3.sv:42: Unsupported statement "<n<> u<343> t<Randcase_statement> p<344> c<261> l<42:7> el<48:14>>       randcase
-".
-
-[ERR:UH0701] 18.14--random-stability_3.sv:42: Unsupported statement "<n<> u<344> t<Statement_item> p<345> c<343> l<42:7> el<48:14>>       randcase
-".
-
-[ERR:UH0701] 18.14--random-stability_3.sv:42: Unsupported statement "<n<> u<345> t<Statement> p<346> c<344> l<42:7> el<48:14>>       randcase
-".
-
-[ERR:UH0701] 18.14--random-stability_3.sv:42: Unsupported statement "<n<> u<346> t<Statement_or_null> p<530> c<345> s<528> l<42:7> el<48:14>>       randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 8
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.6.2--pre-randomize-method_1.sv -l 18.6.2--pre-randomize-method_1.sv.log
@@ -9531,14 +9242,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9546,6 +9249,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9563,14 +9274,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9579,21 +9282,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_3.sv:30: Unsupported statement "<n<> u<198> t<Randsequence_statement> p<199> c<81> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_3.sv:30: Unsupported statement "<n<> u<199> t<Statement_item> p<200> c<198> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_3.sv:30: Unsupported statement "<n<> u<200> t<Statement> p<201> c<199> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_3.sv:30: Unsupported statement "<n<> u<201> t<Statement_or_null> p<377> c<200> s<375> l<30:7> el<35:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.13.2--urandom_range_3.sv -l 18.13.2--urandom_range_3.sv.log
@@ -9607,14 +9306,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9622,6 +9313,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9639,14 +9338,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9654,6 +9345,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9671,14 +9370,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9687,24 +9378,23 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.6--aborting-productions-break-and-return_0.sv -l 18.17.6--aborting-productions-break-and-return_0.sv.log
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_0.sv:20: Unsupported statement "<n<> u<152> t<Randsequence_statement> p<153> c<26> l<20:5> el<26:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_0.sv:20: Unsupported statement "<n<> u<153> t<Statement_item> p<154> c<152> l<20:5> el<26:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_0.sv:20: Unsupported statement "<n<> u<154> t<Statement> p<155> c<153> l<20:5> el<26:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.6.3--behavior-of-randomization-methods_0.sv -l 18.6.3--behavior-of-randomization-methods_0.sv.log
@@ -9724,14 +9414,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9739,6 +9421,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9756,14 +9446,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9771,6 +9453,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9788,14 +9478,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9803,6 +9485,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9820,14 +9510,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9835,6 +9517,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [ERR:CP0338] 18.9--controlling-constraints-with-constraint_mode_2.sv:23:18: Cannot override builtin method: constraint_mode.
 
@@ -9854,14 +9544,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9869,6 +9551,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9892,14 +9582,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9907,6 +9589,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -9936,14 +9626,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -9952,21 +9634,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_1.sv:29: Unsupported statement "<n<> u<164> t<Randsequence_statement> p<165> c<68> l<29:7> el<34:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_1.sv:29: Unsupported statement "<n<> u<165> t<Statement_item> p<166> c<164> l<29:7> el<34:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_1.sv:29: Unsupported statement "<n<> u<166> t<Statement> p<167> c<165> l<29:7> el<34:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_1.sv:29: Unsupported statement "<n<> u<167> t<Statement_or_null> p<343> c<166> s<341> l<29:7> el<34:18>>       randsequence( main )
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.5.6--implication_0.sv -l 18.5.6--implication_0.sv.log
@@ -10004,14 +9682,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10019,6 +9689,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10036,14 +9714,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10051,6 +9721,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10086,14 +9764,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10101,6 +9771,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10118,14 +9796,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10133,6 +9803,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10150,14 +9828,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10165,6 +9835,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10194,14 +9872,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10209,6 +9879,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10232,14 +9910,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10247,6 +9917,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10270,14 +9948,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10285,6 +9955,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10302,14 +9980,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10317,6 +9987,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10334,14 +10012,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10349,6 +10019,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [SNT:PA0207] 18.17.3--case-production-statements_1.sv:32:20: Syntax error: extraneous input ';' expecting {''b0', ''b1', ''B0', ''B1', ''0', ''1', '1'b0', '1'b1', '1'bx', '1'bX', '1'B0', '1'B1', '1'Bx', '1'BX', Integral_number, Real_number, String, 'default', '(', 'type', 'const', 'local', 'super', '{', 'string', 'byte', 'shortint', 'int', 'longint', 'integer', 'time', 'bit', 'logic', 'reg', 'shortreal', 'real', 'realtime', 'signed', 'unsigned', '$', '++', '+', '--', '-', DOLLAR_UNIT, '!', 'endcase', 'tagged', ''', 'null', 'this', DOLLAR_ROOT, 'randomize', 'sample', '&', '|', '~|', '~&', '^~', Escaped_identifier, '~', '^', '~^', Simple_identifier},
             0 : zero;
@@ -10370,14 +10048,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10385,6 +10055,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10402,14 +10080,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10418,24 +10088,23 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.7--value-passing-between-productions_0.sv -l 18.17.7--value-passing-between-productions_0.sv.log
-[ERR:UH0701] 18.17.7--value-passing-between-productions_0.sv:18: Unsupported statement "<n<> u<98> t<Randsequence_statement> p<99> c<14> l<18:5> el<24:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.7--value-passing-between-productions_0.sv:18: Unsupported statement "<n<> u<99> t<Statement_item> p<100> c<98> l<18:5> el<24:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.7--value-passing-between-productions_0.sv:18: Unsupported statement "<n<> u<100> t<Statement> p<101> c<99> l<18:5> el<24:16>>     randsequence( main )
-".
-
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.6.3--behavior-of-randomization-methods_4.sv -l 18.6.3--behavior-of-randomization-methods_4.sv.log
@@ -10457,14 +10126,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10473,21 +10134,17 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
-[ERR:UH0701] 18.14--random-stability_2.sv:30: Unsupported statement "<n<> u<151> t<Randcase_statement> p<152> c<123> l<30:9> el<33:16>>         randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.14--random-stability_2.sv:30: Unsupported statement "<n<> u<152> t<Statement_item> p<153> c<151> l<30:9> el<33:16>>         randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
 
-[ERR:UH0701] 18.14--random-stability_2.sv:30: Unsupported statement "<n<> u<153> t<Statement> p<154> c<152> l<30:9> el<33:16>>         randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
 
-[ERR:UH0701] 18.14--random-stability_2.sv:30: Unsupported statement "<n<> u<154> t<Statement_or_null> p<156> c<153> l<30:9> el<33:16>>         randcase
-".
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 4
+[  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800.2-2017-1.0/src//uvm_pkg.sv -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.8--disabling-random-variables-with-rand_mode_0.sv -l 18.8--disabling-random-variables-with-rand_mode_0.sv.log
@@ -10501,14 +10158,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10516,6 +10165,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10533,14 +10190,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10548,6 +10197,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10571,14 +10228,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10586,6 +10235,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10615,14 +10272,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10630,6 +10279,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10647,14 +10304,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10662,6 +10311,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [ERR:CP0338] 18.6.3--behavior-of-randomization-methods_5.sv:25:19: Cannot override builtin method: randomize.
 
@@ -10687,14 +10344,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10702,6 +10351,14 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:550:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
 
 [  FATAL] : 0
 [ SYNTAX] : 0
@@ -10729,14 +10386,6 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_callback_defines.svh:302:8: Unused macro argument "OPER".
 
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
-
-[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
-
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:496:8: Unused macro argument "TYPE".
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_packer_defines.svh:523:8: Unused macro argument "TYPE".
@@ -10745,45 +10394,37 @@ Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/ ../../../UVM/1800
 
 [WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_recorder_defines.svh:81:12: Unused macro argument "TR_HANDLE".
 
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:793:8: Unused macro argument "FLAG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:797:8: Unused macro argument "ARG".
+
+[WRN:PP0113] ../../../UVM/1800.2-2017-1.0/src/macros/uvm_object_defines.svh:806:8: Unused macro argument "OP".
+
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 13
 [   NOTE] : 0
 Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17.6--aborting-productions-break-and-return_2.sv -l 18.17.6--aborting-productions-break-and-return_2.sv.log
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_2.sv:19: Unsupported statement "<n<> u<143> t<Randsequence_statement> p<144> c<26> l<19:5> el<24:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_2.sv:19: Unsupported statement "<n<> u<144> t<Statement_item> p<145> c<143> l<19:5> el<24:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17.6--aborting-productions-break-and-return_2.sv:19: Unsupported statement "<n<> u<145> t<Statement> p<146> c<144> l<19:5> el<24:16>>     randsequence( main )
-".
-
-[  FATAL] : 0
-[ SYNTAX] : 0
-[  ERROR] : 3
-[WARNING] : 0
-[   NOTE] : 0
-Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.8--disabling-random-variables-with-rand_mode_4.sv -l 18.8--disabling-random-variables-with-rand_mode_4.sv.log
 [  FATAL] : 0
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
-Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17--random-sequence-generation-randsequence_0.sv -l 18.17--random-sequence-generation-randsequence_0.sv.log
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_0.sv:18: Unsupported statement "<n<> u<110> t<Randsequence_statement> p<111> c<14> l<18:5> el<23:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_0.sv:18: Unsupported statement "<n<> u<111> t<Statement_item> p<112> c<110> l<18:5> el<23:16>>     randsequence( main )
-".
-
-[ERR:UH0701] 18.17--random-sequence-generation-randsequence_0.sv:18: Unsupported statement "<n<> u<112> t<Statement> p<113> c<111> l<18:5> el<23:16>>     randsequence( main )
-".
+Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.8--disabling-random-variables-with-rand_mode_4.sv -l 18.8--disabling-random-variables-with-rand_mode_4.sv.log
+[ERR:CP0338] 18.8--disabling-random-variables-with-rand_mode_4.sv:20:18: Cannot override builtin method: rand_mode.
 
 [  FATAL] : 0
 [ SYNTAX] : 0
-[  ERROR] : 3
+[  ERROR] : 1
+[WARNING] : 0
+[   NOTE] : 0
+Processing: -cd chapter-18 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 18.17--random-sequence-generation-randsequence_0.sv -l 18.17--random-sequence-generation-randsequence_0.sv.log
+[  FATAL] : 0
+[ SYNTAX] : 0
+[  ERROR] : 0
 [WARNING] : 0
 [   NOTE] : 0
 Processing: -cd chapter-8 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -noinfo -nouhdm -timescale=1ns/1ns 8.26.6.2--parameter_type_conflict.sv -l 8.26.6.2--parameter_type_conflict.sv.log
@@ -11153,7 +10794,7 @@ Processing: -cd chapter-25 -I../../../UVM/1800.2-2017-1.0/src/  -parse -nonote -
 Processed 1134 tests.
 [  FATAL] : 0
 [ SYNTAX] : 39
-[  ERROR] : 272
-[WARNING] : 1763
+[  ERROR] : 144
+[WARNING] : 1762
 [   NOTE] : 0
 

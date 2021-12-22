@@ -172,9 +172,6 @@ any* CompileHelper::getObject(const std::string& name,
   if ((result == nullptr) && instance) {
     if (ModuleInstance* inst =
             valuedcomponenti_cast<ModuleInstance*>(instance)) {
-      if (expr* complex = instance->getComplexValue(name)) {
-        result = complex;
-      }
       Netlist* netlist = inst->getNetlist();
       if (netlist) {
         if ((result == nullptr) && netlist->array_nets()) {
@@ -217,6 +214,13 @@ any* CompileHelper::getObject(const std::string& name,
               break;
             }
           }
+        }
+      }
+      if ((result == nullptr) ||
+          (result && (result->UhdmType() != uhdmconstant) &&
+           (result->UhdmType() != uhdmparam_assign))) {
+        if (expr* complex = instance->getComplexValue(name)) {
+          result = complex;
         }
       }
     }
@@ -272,6 +276,11 @@ any* CompileHelper::getObject(const std::string& name,
     const std::string& refname = ref->VpiName();
     if (refname != name)
       result = getObject(refname, component, compileDesign, instance, pexpr);
+    if (result) {
+      if (UHDM::param_assign* passign = any_cast<param_assign*>(result)) {
+        result = (any*)passign->Rhs();
+      }
+    }
   }
   if (result && result->UhdmType() == uhdmconstant) {
     if (instance) {
@@ -308,7 +317,7 @@ UHDM::task_func* getFuncFromPackage(const std::string& name,
 
 std::pair<UHDM::task_func*, DesignComponent*> CompileHelper::getTaskFunc(
     const std::string& name, DesignComponent* component,
-    CompileDesign* compileDesign, any* pexpr) {
+    CompileDesign* compileDesign, ValuedComponentI* instance, any* pexpr) {
   std::pair<UHDM::task_func*, DesignComponent*> result = {nullptr, nullptr};
   DesignComponent* comp = component;
   if (strstr(name.c_str(), "::")) {
@@ -361,6 +370,23 @@ std::pair<UHDM::task_func*, DesignComponent*> CompileHelper::getTaskFunc(
     if (res) {
       result = std::make_pair(res, component);
       return result;
+    }
+  }
+  if (instance) {
+    ModuleInstance* inst = valuedcomponenti_cast<ModuleInstance*>(instance);
+    while (inst) {
+      DesignComponent* def = inst->getDefinition();
+      if (def) {
+        if (def->getTask_funcs()) {
+          for (UHDM::task_func* tf : *def->getTask_funcs()) {
+            if (tf->VpiName() == name) {
+              result = std::make_pair(tf, def);
+              return result;
+            }
+          }
+        }
+      }
+      inst = inst->getParent();
     }
   }
   Design* design = compileDesign->getCompiler()->getDesign();
@@ -667,6 +693,7 @@ any* CompileHelper::decodeHierPath(hier_path* path, bool& invalidValue,
                                    const std::string& fileName, int lineNumber,
                                    any* pexpr, bool muteErrors,
                                    bool returnTypespec) {
+  Serializer& s = compileDesign->getSerializer();
   std::string baseObject;
   if (path->Path_elems()->size()) {
     any* firstElem = path->Path_elems()->at(0);
@@ -674,6 +701,11 @@ any* CompileHelper::decodeHierPath(hier_path* path, bool& invalidValue,
   }
   any* object =
       getObject(baseObject, component, compileDesign, instance, pexpr);
+  if (object) {
+    if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+      object = (any*)passign->Rhs();
+    }
+  }
   if (object == nullptr) {
     object = getValue(baseObject, component, compileDesign, instance, fileName,
                       lineNumber, pexpr, true, muteErrors);
@@ -687,6 +719,12 @@ any* CompileHelper::decodeHierPath(hier_path* path, bool& invalidValue,
     } else if (bit_select* bts = any_cast<bit_select*>(object)) {
       object = reduceExpr((any*)bts, invalidValue, component, compileDesign,
                           instance, fileName, lineNumber, pexpr, muteErrors);
+    } else if (constant* cons = any_cast<constant*>(object)) {
+      ElaboratorListener listener(&s);
+      object = UHDM::clone_tree((any*)cons, s, &listener);
+      cons = any_cast<constant*>(object);
+      if (cons->Typespec() == nullptr)
+        cons->Typespec((typespec*)path->Typespec());
     }
 
     std::vector<std::string> the_path;
@@ -1867,6 +1905,11 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
           const std::string& objname = ref->VpiName();
           any* object =
               getObject(objname, component, compileDesign, instance, pexpr);
+          if (object) {
+            if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+              object = (any*)passign->Rhs();
+            }
+          }
           if (object == nullptr) {
             object =
                 (expr*)getValue(objname, component, compileDesign, instance,
@@ -1905,6 +1948,11 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
             const std::string& suffix = elems->at(1)->VpiName();
             any* var =
                 getObject(base, component, compileDesign, instance, pexpr);
+            if (var) {
+              if (UHDM::param_assign* passign = any_cast<param_assign*>(var)) {
+                var = (any*)passign->Rhs();
+              }
+            }
             if (var) {
               UHDM_OBJECT_TYPE vtype = var->UhdmType();
               if (vtype == uhdmport) {
@@ -1969,7 +2017,7 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
     const std::string& name = scall->VpiName();
     std::vector<any*>* args = scall->Tf_call_args();
     auto [func, actual_comp] =
-        getTaskFunc(name, component, compileDesign, pexpr);
+        getTaskFunc(name, component, compileDesign, instance, pexpr);
     function* actual_func = nullptr;
     if (func) {
       actual_func = any_cast<function*>(func);
@@ -2020,6 +2068,12 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
         if (complex == nullptr) {
           complex =
               (expr*)getObject(name, component, compileDesign, instance, pexpr);
+          if (complex) {
+            if (UHDM::param_assign* passign =
+                    any_cast<param_assign*>(complex)) {
+              complex = (expr*)passign->Rhs();
+            }
+          }
         }
         if (complex == nullptr) {
           complex =
@@ -2055,6 +2109,11 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
       } else if (ModuleInstance* inst =
                      valuedcomponenti_cast<ModuleInstance*>(instance)) {
         any* object = getObject(name, component, compileDesign, inst, pexpr);
+        if (object) {
+          if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+            object = (any*)passign->Rhs();
+          }
+        }
         if (object == nullptr) {
           object = getValue(name, component, compileDesign, inst, fileName,
                             lineNumber, pexpr, true, muteErrors);
@@ -2070,7 +2129,13 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
             packed_array_var* array = (packed_array_var*)object;
             VectorOfany* elems = array->Elements();
             if (index_val < elems->size()) {
-              result = elems->at(index_val);
+              any* elem = elems->at(index_val);
+              if (elem->UhdmType() == uhdmenum_var ||
+                  elem->UhdmType() == uhdmstruct_var ||
+                  elem->UhdmType() == uhdmunion_var) {
+              } else {
+                result = elems->at(index_val);
+              }
             }
           } else if (otype == uhdmoperation) {
             operation* op = (operation*)object;
@@ -2148,6 +2213,11 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
       name = parent->VpiDefName();
     }
     any* object = getObject(name, component, compileDesign, instance, pexpr);
+    if (object) {
+      if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+        object = (any*)passign->Rhs();
+      }
+    }
     if (object == nullptr) {
       object = getValue(name, component, compileDesign, instance, fileName,
                         lineNumber, pexpr, true, muteErrors);
@@ -2176,6 +2246,11 @@ expr* CompileHelper::reduceExpr(any* result, bool& invalidValue,
     var_select* sel = (var_select*)result;
     const std::string& name = sel->VpiName();
     any* object = getObject(name, component, compileDesign, instance, pexpr);
+    if (object) {
+      if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+        object = (any*)passign->Rhs();
+      }
+    }
     if (object == nullptr) {
       object = getValue(name, component, compileDesign, instance, fileName,
                         lineNumber, pexpr, true, muteErrors);
@@ -2294,6 +2369,36 @@ any* CompileHelper::hierarchicalSelector(
             return (expr*)member->Typespec();
           else
             return (expr*)member->Default_value();
+        }
+      }
+    }
+  } else if (constant* cons = any_cast<constant*>(object)) {
+    const typespec* ts = cons->Typespec();
+    if (ts) {
+      UHDM_OBJECT_TYPE ttps = ts->UhdmType();
+      if (ttps == uhdmstruct_typespec) {
+        struct_typespec* stpt = (struct_typespec*)ts;
+        uint64_t from = 0;
+        uint64_t width = 0;
+        for (typespec_member* member : *stpt->Members()) {
+          if (member->VpiName() == elemName) {
+            width = Bits(member, invalidValue, component, compileDesign,
+                         instance, fileName, lineNumber, true, false);
+            uint64_t iv = get_value(invalidValue, cons);
+            uint64_t mask = 0;
+
+            for (uint64_t i = from; i < uint64_t(from + width); i++) {
+              mask |= ((uint64_t)1 << i);
+            }
+            uint64_t res = iv & mask;
+            res = res >> (from);
+            cons->VpiValue("UINT:" + std::to_string(res));
+            cons->VpiSize(width);
+            return cons;
+          } else {
+            from += Bits(member, invalidValue, component, compileDesign,
+                         instance, fileName, lineNumber, true, false);
+          }
         }
       }
     }
@@ -3435,10 +3540,42 @@ UHDM::any* CompileHelper::compileExpression(
         case VObjectType::slConstant_param_expression:
         case VObjectType::slAssignment_pattern_expression:
         case VObjectType::slConstant_assignment_pattern_expression:
-        case VObjectType::slExpression_or_dist:
+        case VObjectType::slConst_or_range_expression:
           result = compileExpression(component, fC, child, compileDesign, pexpr,
                                      instance, reduce, muteErrors);
           break;
+        case VObjectType::slExpression_or_dist: {
+          result = compileExpression(component, fC, child, compileDesign, pexpr,
+                                     instance, reduce, muteErrors);
+          if (NodeId dist = fC->Sibling(child)) {
+            operation* op = s.MakeOperation();
+            op->VpiParent(pexpr);
+            UHDM::VectorOfany* operands = s.MakeAnyVec();
+            op->Operands(operands);
+            operands->push_back(result);
+            VObjectType distType = fC->Type(dist);
+            if (distType == slBoolean_abbrev) {
+              NodeId repetition = fC->Child(dist);
+              VObjectType repetType = fC->Type(repetition);
+              op->VpiOpType(UhdmWriter::getVpiOpType(repetType));
+              any* rep =
+                  compileExpression(component, fC, repetition, compileDesign,
+                                    pexpr, instance, reduce, muteErrors);
+              operands->push_back(rep);
+              result = op;
+            } else if (distType == slThroughout || distType == slWithin ||
+                       distType == slIntersect) {
+              NodeId repetition = fC->Sibling(dist);
+              op->VpiOpType(UhdmWriter::getVpiOpType(distType));
+              any* rep =
+                  compileExpression(component, fC, repetition, compileDesign,
+                                    pexpr, instance, reduce, muteErrors);
+              operands->push_back(rep);
+              result = op;
+            }
+          }
+          break;
+        }
         case VObjectType::slComplex_func_call: {
           result = compileComplexFuncCall(component, fC, fC->Child(child),
                                           compileDesign, pexpr, instance,
@@ -3775,11 +3912,80 @@ UHDM::any* CompileHelper::compileExpression(
                                             pexpr, instance);
           break;
         }
+        case VObjectType::slSequence_instance: {
+          NodeId Ps_or_hierarchical_sequence_identifier = fC->Child(child);
+          NodeId Ps_or_hierarchical_array_identifier =
+              fC->Child(Ps_or_hierarchical_sequence_identifier);
+          NodeId NameId = fC->Child(Ps_or_hierarchical_array_identifier);
+          const std::string& name = fC->SymName(NameId);
+          sequence_inst* seqinst = s.MakeSequence_inst();
+          seqinst->VpiName(name);
+          NodeId Sequence_list_of_arguments =
+              fC->Sibling(Ps_or_hierarchical_sequence_identifier);
+          NodeId Sequence_actual_arg = fC->Child(Sequence_list_of_arguments);
+          VectorOfany* args = s.MakeAnyVec();
+          seqinst->Named_event_sequence_expr_groups(args);
+          while (Sequence_actual_arg) {
+            NodeId Event_expression = fC->Child(Sequence_actual_arg);
+            any* exp = compileExpression(component, fC, Event_expression,
+                                         compileDesign, seqinst, instance,
+                                         reduce, muteErrors);
+            if (exp) {
+              args->push_back(exp);
+            }
+            Sequence_actual_arg = fC->Sibling(Sequence_actual_arg);
+          }
+          result = seqinst;
+          break;
+        }
         case VObjectType::slSequence_expr: {
-          if (fC->Sibling(parent) == 0) {
-            result = compileExpression(component, fC, child, compileDesign,
-                                       nullptr, instance, reduce, muteErrors);
-          } else {
+          result = compileExpression(component, fC, child, compileDesign,
+                                     nullptr, instance, reduce, muteErrors);
+          if (NodeId oper = fC->Sibling(child)) {
+            VObjectType type = fC->Type(oper);
+            operation* operation = s.MakeOperation();
+            UHDM::VectorOfany* operands = s.MakeAnyVec();
+            operation->Operands(operands);
+            operands->push_back(result);
+            int operationType = UhdmWriter::getVpiOpType(type);
+            if (NodeId subOp1 = fC->Child(oper)) {
+              VObjectType subOp1type = fC->Type(subOp1);
+              if (subOp1type == slPound_Pound_delay) {
+                if (NodeId subOp2 = fC->Sibling(subOp1)) {
+                  VObjectType subOp2type = fC->Type(subOp2);
+                  if (subOp2type == slAssociative_dimension) {
+                    operationType = vpiConsecutiveRepeatOp;
+                  } else if (subOp2type ==
+                             slCycle_delay_const_range_expression) {
+                    range* r = s.MakeRange();
+                    NodeId lhs = fC->Child(subOp2);
+                    NodeId rhs = fC->Sibling(lhs);
+                    r->Left_expr((expr*)compileExpression(
+                        component, fC, lhs, compileDesign, nullptr, instance,
+                        reduce, muteErrors));
+                    r->Right_expr((expr*)compileExpression(
+                        component, fC, rhs, compileDesign, nullptr, instance,
+                        reduce, muteErrors));
+                    operands->push_back(r);
+                  }
+                } else {
+                  std::string val = fC->SymName(subOp1);
+                  val = val.erase(0, 2);
+                  UHDM::constant* c = s.MakeConstant();
+                  c->VpiValue("UINT:" + val);
+                  c->VpiDecompile(val);
+                  c->VpiSize(64);
+                  c->VpiConstType(vpiUIntConst);
+                  operands->push_back(c);
+                }
+              }
+            }
+            operation->VpiOpType(operationType);
+            any* rhs = compileExpression(component, fC, fC->Sibling(oper),
+                                         compileDesign, nullptr, instance,
+                                         reduce, muteErrors);
+            operands->push_back(rhs);
+            result = operation;
           }
           break;
         }
@@ -3938,6 +4144,7 @@ UHDM::any* CompileHelper::compileExpression(
           if (result) break;
 
           if (sval == NULL || (sval && !sval->isValid())) {
+            expr* complexValue = nullptr;
             if (instance) {
               ModuleInstance* inst =
                   valuedcomponenti_cast<ModuleInstance*>(instance);
@@ -3978,6 +4185,10 @@ UHDM::any* CompileHelper::compileExpression(
                     }
                   }
                 }
+                expr* complex = inst->getComplexValue(name);
+                if (complex) {
+                  complexValue = complex;
+                }
               }
             }
             if (component && (result == nullptr)) {
@@ -4000,9 +4211,13 @@ UHDM::any* CompileHelper::compileExpression(
                            (param_ass->Rhs()->UhdmType() == uhdmconstant))) {
                         if (substituteAssignedValue(param_ass->Rhs(),
                                                     compileDesign)) {
-                          ElaboratorListener listener(&s);
-                          result = UHDM::clone_tree((any*)param_ass->Rhs(), s,
-                                                    &listener);
+                          if (complexValue) {
+                            result = complexValue;
+                          } else {
+                            ElaboratorListener listener(&s);
+                            result = UHDM::clone_tree((any*)param_ass->Rhs(), s,
+                                                      &listener);
+                          }
                           const any* lhs = param_ass->Lhs();
                           expr* res = (expr*)result;
                           const typespec* tps = nullptr;
@@ -4246,10 +4461,15 @@ UHDM::any* CompileHelper::compileExpression(
             } else {
               bool invalidValue = false;
               UHDM::func_call* fcall = s.MakeFunc_call();
+              fcall->VpiFile(fC->getFileName());
+              fcall->VpiLineNo(fC->Line(Dollar_keyword));
+              fcall->VpiColumnNo(fC->Column(Dollar_keyword));
+              fcall->VpiEndLineNo(fC->EndLine(Dollar_keyword));
+              fcall->VpiEndColumnNo(fC->EndColumn(Dollar_keyword));
               fcall->VpiName(name);
 
               auto [func, actual_comp] =
-                  getTaskFunc(name, component, compileDesign, pexpr);
+                  getTaskFunc(name, component, compileDesign, instance, pexpr);
               fcall->Function(any_cast<function*>(func));
               VectorOfany* args = compileTfCallArguments(
                   component, fC, List_of_arguments, compileDesign, fcall,
@@ -4262,7 +4482,8 @@ UHDM::any* CompileHelper::compileExpression(
                       compileDesign->getCompiler()->getErrorContainer();
                   SymbolTable* symbols =
                       compileDesign->getCompiler()->getSymbolTable();
-                  Location loc(symbols->registerSymbol(fileName), lineNumber, 0,
+                  Location loc(symbols->registerSymbol(fileName), lineNumber,
+                               fC->Column(nameId),
                                symbols->registerSymbol(name));
                   Error err(ErrorDefinition::COMP_UNDEFINED_USER_FUNCTION, loc);
                   errors->addError(err);
@@ -4291,6 +4512,85 @@ UHDM::any* CompileHelper::compileExpression(
         case VObjectType::slData_type:
           // When trying to evaluate type parameters
           return nullptr;
+        case VObjectType::slCycle_delay_range: {
+          VObjectType type = fC->Type(child);
+          operation* operation = s.MakeOperation();
+          UHDM::VectorOfany* operands = s.MakeAnyVec();
+          operation->Operands(operands);
+          int operationType = UhdmWriter::getVpiOpType(type);
+          if (NodeId subOp1 = fC->Child(child)) {
+            VObjectType subOp1type = fC->Type(subOp1);
+            if (subOp1type == slPound_Pound_delay) {
+              operationType = vpiUnaryCycleDelayOp;
+              if (NodeId subOp2 = fC->Sibling(subOp1)) {
+                VObjectType subOp2type = fC->Type(subOp2);
+                if (subOp2type == slAssociative_dimension) {
+                  operationType = vpiConsecutiveRepeatOp;
+                } else if (subOp2type == slCycle_delay_const_range_expression) {
+                  range* r = s.MakeRange();
+                  NodeId lhs = fC->Child(subOp2);
+                  NodeId rhs = fC->Sibling(lhs);
+                  r->Left_expr((expr*)compileExpression(
+                      component, fC, lhs, compileDesign, nullptr, instance,
+                      reduce, muteErrors));
+                  r->Right_expr((expr*)compileExpression(
+                      component, fC, rhs, compileDesign, nullptr, instance,
+                      reduce, muteErrors));
+                  operands->push_back(r);
+                }
+              } else {
+                std::string val = fC->SymName(subOp1);
+                val = val.erase(0, 2);
+                UHDM::constant* c = s.MakeConstant();
+                c->VpiValue("UINT:" + val);
+                c->VpiDecompile(val);
+                c->VpiSize(64);
+                c->VpiConstType(vpiUIntConst);
+                operands->push_back(c);
+              }
+            }
+          }
+          operation->VpiOpType(operationType);
+          any* rhs = compileExpression(component, fC, fC->Sibling(child),
+                                       compileDesign, nullptr, instance, reduce,
+                                       muteErrors);
+          operands->push_back(rhs);
+          result = operation;
+          break;
+        }
+        case VObjectType::slProperty_expr: {
+          expr* subexp =
+              (expr*)compileExpression(component, fC, child, compileDesign,
+                                       nullptr, instance, reduce, muteErrors);
+          if (NodeId sib = fC->Sibling(child)) {
+            VObjectType type = fC->Type(sib);
+            switch (type) {
+              case slOR:
+              case slAND:
+              case slUNTIL:
+              case slS_UNTIL:
+              case slUNTIL_WITH:
+              case slS_UNTIL_WITH: {
+                int optype = UhdmWriter::getVpiOpType(type);
+                operation* oper = s.MakeOperation();
+                oper->VpiOpType(optype);
+                UHDM::VectorOfany* operands = s.MakeAnyVec();
+                oper->Operands(operands);
+                operands->push_back(subexp);
+                NodeId nop = fC->Sibling(sib);
+                expr* nexp = (expr*)compileExpression(
+                    component, fC, nop, compileDesign, nullptr, instance,
+                    reduce, muteErrors);
+                operands->push_back(nexp);
+                result = oper;
+                break;
+              }
+              default:
+                break;
+            };
+          }
+          break;
+        }
         default:
           break;
       }
@@ -5254,6 +5554,11 @@ uint64_t CompileHelper::Bits(const UHDM::any* typespec, bool& invalidValue,
         } else {
           any* object = getObject(ref->VpiName(), component, compileDesign,
                                   instance, nullptr);
+          if (object) {
+            if (UHDM::param_assign* passign = any_cast<param_assign*>(object)) {
+              object = (any*)passign->Rhs();
+            }
+          }
           if (object == nullptr) {
             object =
                 getValue(ref->VpiName(), component, compileDesign, instance,
@@ -5299,6 +5604,12 @@ uint64_t CompileHelper::Bits(const UHDM::any* typespec, bool& invalidValue,
         bits += Bits(tps, invalidValue, component, compileDesign, instance,
                      fileName, lineNumber, reduce, sizeMode);
         ranges = tmp->Ranges();
+        break;
+      }
+      case uhdmtypespec_member: {
+        typespec_member* tmp = (typespec_member*)typespec;
+        bits += Bits(tmp->Typespec(), invalidValue, component, compileDesign,
+                     instance, fileName, lineNumber, reduce, sizeMode);
         break;
       }
       default:
@@ -5353,6 +5664,7 @@ const typespec* getMemberTypespec(const typespec* tpss,
                                   const std::vector<std::string>& suffixes,
                                   uint32_t index) {
   const typespec* result = nullptr;
+  if (tpss == nullptr) return result;
   if (tpss->UhdmType() == uhdmstruct_typespec) {
     const struct_typespec* ts = (const struct_typespec*)tpss;
     for (typespec_member* memb : *ts->Members()) {
@@ -5992,7 +6304,7 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
     std::string basename = packagename + "::" + functionname;
     tf_call* call = nullptr;
     std::pair<task_func*, DesignComponent*> ret =
-        getTaskFunc(basename, component, compileDesign, pexpr);
+        getTaskFunc(basename, component, compileDesign, instance, pexpr);
     task_func* tf = ret.first;
     if (tf) {
       if (tf->UhdmType() == uhdmfunction) {
@@ -6004,6 +6316,11 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
         tcall->Task(any_cast<task*>(tf));
         call = tcall;
       }
+      call->VpiFile(fC->getFileName());
+      call->VpiLineNo(fC->Line(Class_type_name));
+      call->VpiColumnNo(fC->Column(Class_type_name));
+      call->VpiEndLineNo(fC->EndLine(Class_type_name));
+      call->VpiEndColumnNo(fC->EndColumn(Class_type_name));
     }
     Design* design = compileDesign->getCompiler()->getDesign();
     Package* pack = design->getPackage(packagename);
@@ -6079,109 +6396,7 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
         }
       }
     }
-    /*
-    if ((methodCall || (fC->Type(selectName) == slMethod_call_body)) &&
-    (!hierPath)) {
-      // Example tree
-      //
-      // Verilog:
-      //   a.find(i) with (i<5);
-      //
-      // AST:
-      //   n<a> u<43> t<StringConst> p<66> s<45> l<4>
-      //   n<> u<44> t<Bit_select> p<45> l<4>
-      //   n<> u<45> t<Select> p<66> c<44> s<65> l<4>
-      //   n<find> u<46> t<StringConst> p<47> l<4>
-      //   n<> u<47> t<Array_method_name> p<63> c<46> s<52> l<4>
-      //   n<i> u<48> t<StringConst> p<49> l<4>
-      //   n<> u<49> t<Primary_literal> p<50> c<48> l<4>
-      //   n<> u<50> t<Primary> p<51> c<49> l<4>
-      //   n<> u<51> t<Expression> p<52> c<50> l<4>
-      //   n<> u<52> t<List_of_arguments> p<63> c<51> s<62> l<4>
-      //   n<i> u<53> t<StringConst> p<54> l<4>
-      //   n<> u<54> t<Primary_literal> p<55> c<53> l<4>
-      //   n<> u<55> t<Primary> p<56> c<54> l<4>
-      //   n<> u<56> t<Expression> p<62> c<55> s<61> l<4>
-      //   n<5> u<57> t<IntConst> p<58> l<4>
-      //   n<> u<58> t<Primary_literal> p<59> c<57> l<4>
-      //   n<> u<59> t<Primary> p<60> c<58> l<4>
-      //   n<> u<60> t<Expression> p<62> c<59> l<4>
-      //   n<> u<61> t<BinOp_Less> p<62> s<60> l<4>
-      //   n<> u<62> t<Expression> p<63> c<56> l<4>
-      //   n<> u<63> t<Array_manipulation_call> p<64> c<47> l<4>
-      //   n<> u<64> t<Built_in_method_call> p<65> c<63> l<4>
-      //   n<> u<65> t<Method_call_body> p<66> c<64> l<4>
-      //   n<> u<66> t<Complex_func_call> p<67> c<43> l<4>
 
-      NodeId method_child = fC->Child(selectName);
-      method_func_call* fcall = nullptr;
-
-      if (fC->Type(method_child) == slBuilt_in_method_call) {
-        // vpiName: method name (Array_method_name above)
-        NodeId method_name_node = fC->Child(fC->Child(fC->Child(method_child)));
-        std::string method_name = fC->SymName(method_name_node);
-        VObjectType calltype = fC->Type(method_name_node);
-        if (calltype == slAnd_call) {
-          method_name = "and";
-        } else if (calltype == slOr_call) {
-          method_name = "or";
-        } else if (calltype == slXor_call) {
-          method_name = "xor";
-        } else if (calltype == slUnique_call) {
-          method_name = "unique";
-        }
-
-        NodeId randomize_call = fC->Child(method_child);
-
-        // vpiPrefix: object to which the method is being applied (sval here)
-        ref_obj* prefix = s.MakeRef_obj();
-        prefix->VpiName(sval);
-
-        if (fC->Type(randomize_call) == slRandomize_call) {
-          fcall = compileRandomizeCall(component, fC, fC->Child(randomize_call),
-                                       compileDesign, pexpr);
-          fcall->Prefix(prefix);
-          result = fcall;
-          return result;
-        }
-
-        fcall = s.MakeMethod_func_call();
-        fcall->VpiName(method_name);
-        NodeId list_of_arguments =
-            fC->Sibling(fC->Child(fC->Child(method_child)));
-        NodeId with_conditions_node;
-        if (fC->Type(list_of_arguments) == slList_of_arguments) {
-          VectorOfany* arguments = compileTfCallArguments(
-              component, fC, list_of_arguments, compileDesign, fcall, instance,
-              reduce, muteErrors);
-          fcall->Tf_call_args(arguments);
-          with_conditions_node = fC->Sibling(list_of_arguments);
-        } else {
-          with_conditions_node = list_of_arguments;
-        }
-        // vpiWith: with conditions (expression in node u<62> above)
-        // (not in every method, node id is 0 if missing)
-        if (with_conditions_node != 0) {
-          expr* with_conditions = (expr*)compileExpression(
-              component, fC, with_conditions_node, compileDesign, pexpr,
-              instance, reduce, muteErrors);
-          fcall->With(with_conditions);
-        }
-        fcall->Prefix(prefix);
-      } else {
-        fcall = s.MakeMethod_func_call();
-        ref_obj* object = s.MakeRef_obj();
-        object->VpiName(sval);
-        fcall->Prefix(object);
-        std::string methodName = fC->SymName(dotedName);
-        fcall->VpiName(methodName);
-        VectorOfany* arguments = compileTfCallArguments(
-            component, fC, List_of_arguments, compileDesign, fcall, instance,
-            reduce, muteErrors);
-        fcall->Tf_call_args(arguments);
-      }
-      result = fcall;
-    } else */
     if (dotedName) {
       std::string the_name = fC->SymName(name);
       if (!hierPath) {
@@ -6205,16 +6420,7 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
           if (index) {
             bit_select* select = s.MakeBit_select();
             select->VpiIndex(index);
-            if (index->UhdmType() == uhdmconstant) {
-              ind = index->VpiDecompile();
-              the_name += "[" + ind + "]";
-            } else if (index->UhdmType() == uhdmref_obj) {
-              ind = index->VpiName();
-              the_name += "[" + ind + "]";
-            } else if (index->UhdmType() == uhdmoperation) {
-              ind = "...";
-              the_name += "[" + ind + "]";
-            }
+            the_name += decompileHelper(index);
             select->VpiFullName(the_name);
             select->VpiName(fC->SymName(name));
             select->VpiParent(pexpr);
@@ -6232,6 +6438,31 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
 
       UHDM::hier_path* path = s.MakeHier_path();
       VectorOfany* elems = s.MakeAnyVec();
+      if (instance && reduce) {
+        UHDM::any* rootValue =
+            getObject(the_name, component, compileDesign, instance, pexpr);
+        if (rootValue) {
+          if (expr* expval = any_cast<expr*>(rootValue)) {
+            path->Root_value(rootValue);
+            path->Typespec((typespec*)expval->Typespec());
+          } else if (UHDM::port* expval = any_cast<port*>(rootValue)) {
+            path->Root_value((any*)expval->Low_conn());
+          } else if (UHDM::param_assign* passign =
+                         any_cast<param_assign*>(rootValue)) {
+            path->Root_value((any*)passign->Rhs());
+            const any* param = passign->Lhs();
+            const typespec* tps = nullptr;
+            if (param->UhdmType() == uhdmparameter) {
+              parameter* p = (parameter*)param;
+              tps = p->Typespec();
+            } else {
+              type_parameter* p = (type_parameter*)param;
+              tps = p->Typespec();
+            }
+            path->Typespec((typespec*)tps);
+          }
+        }
+      }
       std::string tmpName = the_name;
       path->Path_elems(elems);
       bool is_hierarchical = false;
@@ -6272,22 +6503,7 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
             ref_obj* parent = (ref_obj*)select->VpiParent();
             if (parent) parent->VpiDefName(tmpName);
             elems->push_back(select);
-            if (part_select* pselect = any_cast<part_select*>(select)) {
-              std::string selectRange =
-                  "[" + pselect->Left_range()->VpiDecompile() + ":" +
-                  pselect->Right_range()->VpiDecompile() + "]";
-              the_name += selectRange;
-            } else if (indexed_part_select* pselect =
-                           any_cast<indexed_part_select*>(select)) {
-              std::string selectRange =
-                  "[" + pselect->Base_expr()->VpiDecompile() +
-                  ((pselect->VpiIndexedPartSelectType() == vpiPosIndexed)
-                       ? "+"
-                       : "-") +
-                  std::string(":") + pselect->Width_expr()->VpiDecompile() +
-                  "]";
-              the_name += selectRange;
-            }
+            the_name += decompileHelper(select);
           } else if (Expression) {
             expr* index = (expr*)compileExpression(
                 component, fC, Expression, compileDesign, pexpr, instance,
@@ -6295,20 +6511,11 @@ UHDM::any* CompileHelper::compileComplexFuncCall(
             if (index) {
               bit_select* select = s.MakeBit_select();
               elems->push_back(select);
-              select->VpiParent(path);
+              if (!tmpName.empty()) select->VpiParent(path);
               select->VpiIndex(index);
               select->VpiName(tmpName);
               select->VpiFullName(tmpName);
-              if (index->UhdmType() == uhdmconstant) {
-                ind = index->VpiDecompile();
-                the_name += "[" + ind + "]";
-              } else if (index->UhdmType() == uhdmref_obj) {
-                ind = index->VpiName();
-                the_name += "[" + ind + "]";
-              } else if (index->UhdmType() == uhdmoperation) {
-                ind = "...";
-                the_name += "[" + ind + "]";
-              }
+              the_name += decompileHelper(index);
             }
           } else {
             ref_obj* ref = s.MakeRef_obj();

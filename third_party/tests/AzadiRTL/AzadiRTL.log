@@ -8,6 +8,8 @@
 
 [INF:PP0122] Preprocessing source file "dm_pkg.sv".
 
+[NTE:PP0128] dm_pkg.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "fpnew_pkg.sv".
 
 [INF:PP0122] Preprocessing source file "brq_pkg.sv".
@@ -17,6 +19,8 @@
 [INF:PP0122] Preprocessing source file "gpio_reg_pkg.sv".
 
 [INF:PP0122] Preprocessing source file "cf_math_pkg.sv".
+
+[NTE:PP0128] cf_math_pkg.sv:15: Non ASCII character detected, replaced by space "§".
 
 [INF:PP0122] Preprocessing source file "jtag_pkg.sv".
 
@@ -38,11 +42,15 @@
 
 [INF:PP0122] Preprocessing source file "dm_sba.sv".
 
+[NTE:PP0128] dm_sba.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "brq_idu_decoder.sv".
 
 [INF:PP0122] Preprocessing source file "rv_plic_gateway.sv".
 
 [INF:PP0122] Preprocessing source file "defs_div_sqrt_mvp.sv".
+
+[NTE:PP0128] defs_div_sqrt_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "data_mem_top.sv".
 
@@ -55,6 +63,8 @@
 [INF:PP0123] Preprocessing include file "spi_defines.v".
 
 [INF:PP0122] Preprocessing source file "control_mvp.sv".
+
+[NTE:PP0128] control_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "uart_top.sv".
 
@@ -76,9 +86,13 @@
 
 [INF:PP0122] Preprocessing source file "dm_mem.sv".
 
+[NTE:PP0128] dm_mem.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "brq_wbu.sv".
 
 [INF:PP0122] Preprocessing source file "iteration_div_sqrt_mvp.sv".
+
+[NTE:PP0128] iteration_div_sqrt_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "rv_dm.sv".
 
@@ -101,6 +115,8 @@
 [INF:PP0122] Preprocessing source file "rv_timer.sv".
 
 [INF:PP0122] Preprocessing source file "nrbd_nrsc_mvp.sv".
+
+[NTE:PP0128] nrbd_nrsc_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "brq_ifu.sv".
 
@@ -148,6 +164,8 @@
 
 [INF:PP0122] Preprocessing source file "preprocess_mvp.sv".
 
+[NTE:PP0128] preprocess_mvp.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "brq_idu_controller.sv".
 
 [INF:PP0122] Preprocessing source file "rr_arb_tree.sv".
@@ -156,9 +174,13 @@
 
 [INF:PP0122] Preprocessing source file "fpnew_fma.sv".
 
+[NTE:PP0128] fpnew_fma.sv:253: Non ASCII character detected, replaced by space "±".
+
 [INF:PP0123] Preprocessing include file "registers.svh".
 
 [INF:PP0122] Preprocessing source file "fpnew_fma_multi.sv".
+
+[NTE:PP0128] fpnew_fma_multi.sv:320: Non ASCII character detected, replaced by space "±".
 
 [INF:PP0122] Preprocessing source file "brq_exu_multdiv_slow.sv".
 
@@ -188,9 +210,15 @@
 
 [INF:PP0122] Preprocessing source file "dm_csrs.sv".
 
+[NTE:PP0128] dm_csrs.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "dmi_jtag.sv".
 
+[NTE:PP0128] dmi_jtag.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "norm_div_sqrt_mvp.sv".
+
+[NTE:PP0128] norm_div_sqrt_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "brq_core_top.sv".
 
@@ -203,6 +231,8 @@
 [INF:PP0122] Preprocessing source file "timer_core.sv".
 
 [INF:PP0122] Preprocessing source file "div_sqrt_top_mvp.sv".
+
+[NTE:PP0128] div_sqrt_top_mvp.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "tlul_socket_1n.sv".
 
@@ -218,7 +248,11 @@
 
 [INF:PP0122] Preprocessing source file "dmi_jtag_tap.sv".
 
+[NTE:PP0128] dmi_jtag_tap.sv:7: Non ASCII character detected, replaced by space "".
+
 [INF:PP0122] Preprocessing source file "dmi_cdc.sv".
+
+[NTE:PP0128] dmi_cdc.sv:7: Non ASCII character detected, replaced by space "".
 
 [INF:PP0122] Preprocessing source file "brq_exu.sv".
 
@@ -1281,33 +1315,15 @@ there are 1 more instances of this message.
 
 [INF:CP0335] fpnew_top.sv:74: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2]".
 
-[INF:CP0335] fpnew_top.sv:77: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[0]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[1]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[2]".
+[INF:CP0335] fpnew_top.sv:83: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].no_check".
 
 [INF:CP0335] fpnew_top.sv:74: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3]".
 
-[INF:CP0335] fpnew_top.sv:77: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[0]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[1]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[2]".
+[INF:CP0335] fpnew_top.sv:83: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].no_check".
 
 [INF:CP0335] fpnew_top.sv:74: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4]".
 
-[INF:CP0335] fpnew_top.sv:77: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[0]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[1]".
-
-[INF:CP0335] fpnew_top.sv:78: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[2]".
+[INF:CP0335] fpnew_top.sv:83: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].no_check".
 
 [INF:CP0335] fpnew_top.sv:91: Compile generate block "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0]".
 
@@ -5777,9 +5793,9 @@ Instance tree:
 [SCO] work@azadi_soc_top.u_top.u_core.cs_registers_i.u_cpuctrl_csr.gen_no_shadow work@azadi_soc_top.u_top.u_core.cs_registers_i.u_cpuctrl_csr.gen_no_shadow
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[0].no_check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[0].no_check
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[1].no_check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[1].no_check
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check
+[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].no_check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].no_check
+[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].no_check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].no_check
+[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].no_check work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].no_check
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].slice_inputs work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].slice_inputs
 [MOD] work@fpnew_opgroup_block work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[1].slice_inputs work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[1].slice_inputs
@@ -7710,15 +7726,6 @@ Instance tree:
 [MOD] work@brq_csr work@azadi_soc_top.u_top.u_core.cs_registers_i.gen_trigger_regs.g_dbg_tmatch_reg[0].u_tmatch_value_csr
 [SCO] work@brq_csr.UNNAMED.UNNAMED work@azadi_soc_top.u_top.u_core.cs_registers_i.u_cpuctrl_csr.UNNAMED.UNNAMED
 [SCO] work@brq_csr.UNNAMED.UNNAMED work@azadi_soc_top.u_top.u_core.cs_registers_i.u_cpuctrl_csr.UNNAMED.UNNAMED
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[0] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[0]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[1] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[1]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[2] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[2]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[0] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[0]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[1] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[1]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[2] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[2]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[0] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[0]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[1] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[1]
-[SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[2] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[2]
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[0] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[0]
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[1] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[1]
 [SCO] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[2] work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[2]
@@ -13717,11 +13724,11 @@ Instance tree:
 
 [NTE:EL0522] fpnew_top.sv:83: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[1].no_check".
 
-[NTE:EL0522] fpnew_top.sv:77: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check".
+[NTE:EL0522] fpnew_top.sv:83: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].no_check".
 
-[NTE:EL0522] fpnew_top.sv:77: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check".
+[NTE:EL0522] fpnew_top.sv:83: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].no_check".
 
-[NTE:EL0522] fpnew_top.sv:77: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check".
+[NTE:EL0522] fpnew_top.sv:83: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].no_check".
 
 [NTE:EL0522] fpnew_top.sv:100: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].slice_inputs".
 
@@ -17583,24 +17590,6 @@ Instance tree:
 
 [NTE:EL0522] brq_csr.sv:28: Scope "work@azadi_soc_top.u_top.u_core.cs_registers_i.u_cpuctrl_csr.UNNAMED.UNNAMED".
 
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[0]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[1]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[2].check.operands[2]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[0]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[1]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[3].check.operands[2]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[0]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[1]".
-
-[NTE:EL0522] fpnew_top.sv:78: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_nanbox_check[4].check.operands[2]".
-
 [NTE:EL0522] fpnew_opgroup_block.sv:80: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[0]".
 
 [NTE:EL0522] fpnew_opgroup_block.sv:80: Scope "work@azadi_soc_top.u_top.u_core.i_fpnew_top.gen_operation_groups[0].i_opgroup_block.gen_parallel_slices[1]".
@@ -20225,5 +20214,5 @@ Instance tree:
 [ SYNTAX] : 0
 [  ERROR] : 0
 [WARNING] : 6
-[   NOTE] : 5604
+[   NOTE] : 5612
 

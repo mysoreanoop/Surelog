@@ -27,6 +27,14 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
+#if (__cplusplus >= 201703L) && __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
 #if defined(_MSC_VER)
 #include <direct.h>
 #define PATH_MAX _MAX_PATH
@@ -58,7 +66,7 @@ static std::string_view defaultLogFileName = "surelog.log";
 //         Or when the cache schema changes
 //        This will render the cache invalid
 const std::string& CommandLineParser::getVersionNumber() {
-  static const std::string m_versionNumber = "1.13";
+  static const std::string m_versionNumber = "1.17";
   return m_versionNumber;
 }
 
@@ -496,9 +504,10 @@ bool CommandLineParser::parseCommandLine(int argc, const char** argv) {
     }
   }
 
+  const std::string separator(1, fs::path::preferred_separator);
   std::string built_in_verilog;
   for (const std::string& dir : search_path) {
-    built_in_verilog = dir + "sv/builtin.sv";
+    built_in_verilog = dir + "sv" + separator + "builtin.sv";
     if (FileUtils::fileExists(built_in_verilog)) break;
   }
 
@@ -516,7 +525,7 @@ bool CommandLineParser::parseCommandLine(int argc, const char** argv) {
     } else if (!strcmp(argv[i], "-builtin")) {
       if (i < argc - 1) {
         m_builtinPath = argv[i + 1];
-        built_in_verilog = m_builtinPath + "/builtin.sv";
+        built_in_verilog = m_builtinPath + separator + "builtin.sv";
       }
     } else if (!strcmp(argv[i], "-l")) {
       if (i < argc - 1) {
@@ -1048,6 +1057,14 @@ bool CommandLineParser::parseCommandLine(int argc, const char** argv) {
         std::string fileName = all_arguments[i];
         fileName = FileUtils::basename(fileName);
         m_svSourceFiles.insert(fileName);
+        std::string path = FileUtils::getPathName(all_arguments[i]);
+        if (!path.empty()) {
+          SymbolId pathId = m_symbolTable->registerSymbol(path);
+          if (m_includePathSet.find(pathId) == m_includePathSet.end()) {
+            m_includePathSet.insert(pathId);
+            m_includePaths.push_back(pathId);
+          }
+        }
       } else {
         m_sverilog = true;
       }
@@ -1079,6 +1096,14 @@ bool CommandLineParser::parseCommandLine(int argc, const char** argv) {
         } else {
           m_sourceFiles.push_back(
               m_symbolTable->registerSymbol(all_arguments[i]));
+          std::string path = FileUtils::getPathName(all_arguments[i]);
+          if (!path.empty()) {
+            SymbolId pathId = m_symbolTable->registerSymbol(path);
+            if (m_includePathSet.find(pathId) == m_includePathSet.end()) {
+              m_includePathSet.insert(pathId);
+              m_includePaths.push_back(pathId);
+            }
+          }
         }
       }
     }

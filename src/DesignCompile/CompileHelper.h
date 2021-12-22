@@ -202,6 +202,11 @@ class CompileHelper final {
                                      CompileDesign* compileDesign,
                                      UHDM::any* pstmt = nullptr,
                                      ValuedComponentI* instance = nullptr);
+  UHDM::atomic_stmt* compileRandcaseStmt(DesignComponent* component,
+                                         const FileContent* fC, NodeId nodeId,
+                                         CompileDesign* compileDesign,
+                                         UHDM::any* pstmt = nullptr,
+                                         ValuedComponentI* instance = nullptr);
 
   UHDM::VectorOfany* compileStmt(DesignComponent* component,
                                  const FileContent* fC, NodeId nodeId,
@@ -231,6 +236,12 @@ class CompileHelper final {
       CompileDesign* compileDesign, SURELOG::ValuedComponentI* instance,
       bool reduce, const std::string& suffixname = "",
       const std::string& typeName = "");
+
+  UHDM::any* compileCheckerInstantiation(DesignComponent* component,
+                                         const FileContent* fC, NodeId nodeId,
+                                         CompileDesign* compileDesign,
+                                         UHDM::any* pstmt,
+                                         ValuedComponentI* instance);
 
   UHDM::any* compileSimpleImmediateAssertion(DesignComponent* component,
                                              const FileContent* fC,
@@ -444,7 +455,8 @@ class CompileHelper final {
 
   std::pair<UHDM::task_func*, DesignComponent*> getTaskFunc(
       const std::string& name, DesignComponent* component,
-      CompileDesign* compileDesign, UHDM::any* pexpr);
+      CompileDesign* compileDesign, ValuedComponentI* instance,
+      UHDM::any* pexpr);
 
   UHDM::expr* EvalFunc(UHDM::function* func, std::vector<UHDM::any*>* args,
                        bool& invalidValue, DesignComponent* component,
@@ -534,6 +546,8 @@ class CompileHelper final {
 
   bool isOverloaded(const UHDM::any* expr, CompileDesign* compileDesign,
                     ValuedComponentI* instance);
+
+  std::string decompileHelper(const UHDM::any* sel);
 
  private:
   CompileHelper(const CompileHelper&) = delete;

@@ -1637,12 +1637,12 @@ design: (work@top)
           \_string_typespec: (size), line:14:7, endln:14:11
             |vpiName:size
       |vpiOperand:
-      \_operation: , line:17:5, endln:19:6
+      \_operation: , line:47:11, endln:47:33
         |vpiOpType:75
         |vpiOperand:
         \_tagged_pattern: 
           |vpiPattern:
-          \_constant: , line:18:19, endln:18:21
+          \_constant: , line:36:33, endln:36:42
             |vpiConstType:9
             |vpiDecompile:56
             |vpiSize:64

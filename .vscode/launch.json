@@ -179,6 +179,25 @@
             ]
         },
         {
+            "name": "Scr1SvTests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/dbuild/bin/surelog",
+            "args": ["-parse", "-f", "Scr1SvTests.sl", "-nocache"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/third_party/tests/Scr1SvTests",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
             "name": "Earlgrey",
             "type": "cppdbg",
             "request": "launch",
@@ -663,7 +682,45 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/dbuild/bin/surelog",
-            "args": ["-parse", "tests/ScratchPad.sv", "-DMEM_ROOT=test", "-d", "inst" ,"-d", "ast", "-d", "uhdm", "-nobuiltin", "-d", "vpi_ids", "-d", "coveruhdm", "-replay", "-writepp", "-nocache"],
+            "args": ["-parse", "tests/ScratchPad.sv", "-d", "inst", "-d", "ast", "-d", "uhdm", "-nobuiltin", "-d", "vpi_ids", "-replay", "-nocache"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "ScratchPad_v",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/dbuild/bin/surelog",
+            "args": ["-parse", "tests/ScratchPad.v", "-d", "inst" ,"-d", "ast", "-d", "uhdm", "-nobuiltin", "-d", "vpi_ids", "-replay", "-nocache"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "ScratchPadLowmem",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/dbuild/bin/surelog",
+            "args": ["-parse", "-lowmem", "tests/ScratchPad.sv"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
@@ -704,6 +761,25 @@
             "args": ["-f", "BasicOh.sl"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/third_party/tests/oh",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "Tnoc",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/dbuild/bin/surelog",
+            "args": ["-f", "Tnoc.sl"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/third_party/tests/Tnoc",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -986,9 +1062,9 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/dbuild/bin/surelog",
-            "args": ["-parseonly", "-nobuiltin", "-o", "/home/alain/Surelog/ccc/slpp_all/../", "-l", "1_ScratchPad.sv.log", "/home/alain/Surelog/ccc/slpp_all/../slpp_all/work/tests_16772411270750708302/ScratchPad.sv" ,"-d", "ast", "-d", "uhdm", "-elabuhdm", "-replay"],
+            "args": ["-parseonly", "-mt", "0", "-mp", "0", "-o", "/home/alain/Surelog/./slpp_all/../", "-nobuiltin", "-l", "1_ScratchPad.sv.log",  "work/tests_11224458573578600427/ScratchPad.sv"],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}/ccc/slpp_all",
+            "cwd": "${workspaceFolder}/slpp_all",
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",

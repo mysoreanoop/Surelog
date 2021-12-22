@@ -1031,6 +1031,21 @@ bool ElaborationStep::bindPortType_(Signal* signal, const FileContent* fC,
       }
       if (def == NULL) {
         type = parentComponent->getDataType(interfName);
+        if (type == nullptr) {
+          if (!m_compileDesign->getCompiler()
+                   ->getCommandLineParser()
+                   ->fileunit()) {
+            for (auto fC : m_compileDesign->getCompiler()
+                               ->getDesign()
+                               ->getAllFileContents()) {
+              if (const DataType* dt1 = fC.second->getDataType(interfName)) {
+                type = dt1;
+                break;
+              }
+            }
+          }
+        }
+
         if (type) {
           const DataType* def = type->getActual();
           DataType::Category cat = def->getCategory();
@@ -1397,6 +1412,19 @@ any* ElaborationStep::makeVar_(DesignComponent* component, Signal* sig,
       logic_var* logicv = s.MakeLogic_var();
       logicv->Ranges(packedDimensions);
       var = logicv;
+    } else if (subnettype == slEvent_type) {
+      named_event* event = s.MakeNamed_event();
+      event->VpiName(signame);
+      if (instance) {
+        Netlist* netlist = instance->getNetlist();
+        VectorOfnamed_event* events = netlist->named_events();
+        if (events == nullptr) {
+          netlist->named_events(s.MakeNamed_eventVec());
+          events = netlist->named_events();
+        }
+        events->push_back(event);
+      }
+      return event;
     } else {
       // default type (fallback)
       logic_var* logicv = s.MakeLogic_var();

@@ -53,7 +53,7 @@ description
     | ( attribute_instance )* ( package_item 
                               | bind_directive )  
     | config_declaration     
-    | top_directives         
+    | top_directives
     ; 
 
 module_nonansi_header : ( attribute_instance )* module_keyword ( lifetime )?  
@@ -1445,7 +1445,7 @@ hierarchical_btf_identifier
     | ( dollar_root_keyword )? identifier (( OPEN_BRACKET constant_expression CLOSE_BRACKET )* DOT identifier)*  ( class_scope )? identifier 
     ; 
 
-cover_point : ( identifier COLUMN )? COVERPOINT expression ( IFF OPEN_PARENS expression CLOSE_PARENS )? bins_or_empty ; 
+cover_point : ( data_type_or_implicit identifier COLUMN )? COVERPOINT expression ( IFF OPEN_PARENS expression CLOSE_PARENS )? bins_or_empty ; 
 
 bins_or_empty  
     : OPEN_CURLY ( attribute_instance )*  
@@ -1507,14 +1507,14 @@ cross_item
     ; 
 
 cross_body  
-    : OPEN_CURLY ( cross_body_item SEMICOLUMN )? CLOSE_CURLY  
+    : OPEN_CURLY ( cross_body_item )* CLOSE_CURLY  
                                                         
     | SEMICOLUMN                                        
     ; 
 
 cross_body_item  
       : function_declaration                  
-      | bins_selection_or_option SEMICOLUMN  
+      | bins_selection_or_option SEMICOLUMN
       ; 
 
 bins_selection_or_option  
@@ -2378,7 +2378,7 @@ clocking_direction
 
 list_of_clocking_decl_assign : clocking_decl_assign ( COMMA clocking_decl_assign )* ; 
 
-clocking_decl_assign : identifier ( ASSIGN_OP  ( dollar_root_keyword )? identifier (( OPEN_BRACKET constant_expression CLOSE_BRACKET )* DOT identifier)*  )? ; 
+clocking_decl_assign : identifier ( ASSIGN_OP expression )? ; 
 
 clocking_skew   
     : edge_identifier ( delay_control )? 

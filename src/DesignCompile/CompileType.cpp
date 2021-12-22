@@ -459,11 +459,29 @@ typespec* CompileHelper::compileDatastructureTypespec(
               lhs->Typespec(tps);
               result = tps;
             }
+            if (result->UhdmType() == uhdmint_typespec) {
+              int_typespec* ts = (int_typespec*)result;
+              ref_obj* ref = s.MakeRef_obj();
+              ref->Actual_group(lhs);
+              ts->Cast_to_expr(ref);
+            }
             return result;
           }
         }
       }
     }
+    if (dt == nullptr) {
+      if (!compileDesign->getCompiler()->getCommandLineParser()->fileunit()) {
+        for (auto fC :
+             compileDesign->getCompiler()->getDesign()->getAllFileContents()) {
+          if (const DataType* dt1 = fC.second->getDataType(typeName)) {
+            dt = dt1;
+            break;
+          }
+        }
+      }
+    }
+
     TypeDef* parent_tpd = nullptr;
     while (dt) {
       if (const TypeDef* tpd = datatype_cast<const TypeDef*>(dt)) {
@@ -856,6 +874,14 @@ UHDM::typespec* CompileHelper::compileTypespec(
   } else {
     Packed_dimension = fC->Sibling(type);
   }
+  bool isPacked = false;
+  if (fC->Type(Packed_dimension) == slPacked_keyword) {
+    Packed_dimension = fC->Sibling(Packed_dimension);
+    isPacked = true;
+  }
+  if (fC->Type(Packed_dimension) == slStruct_union_member) {
+    Packed_dimension = fC->Sibling(Packed_dimension);
+  }
   int size;
   VectorOfrange* ranges =
       compileRanges(component, fC, Packed_dimension, compileDesign, pstmt,
@@ -867,17 +893,21 @@ UHDM::typespec* CompileHelper::compileTypespec(
                              result, instance, reduce);
     }
     case VObjectType::slSystem_task: {
-      UHDM::constant* constant = any_cast<UHDM::constant*>(compileExpression(
-          component, fC, type, compileDesign, nullptr, instance, true));
-      if (constant) {
+      UHDM::any* res = compileExpression(component, fC, type, compileDesign,
+                                         nullptr, instance, reduce);
+      if (res) {
         integer_typespec* var = s.MakeInteger_typespec();
-        var->VpiValue(constant->VpiValue());
         var->VpiFile(fC->getFileName());
         var->VpiLineNo(fC->Line(type));
         var->VpiColumnNo(fC->Column(type));
         var->VpiEndLineNo(fC->EndLine(type));
         var->VpiEndColumnNo(fC->EndColumn(type));
         result = var;
+        if (UHDM::constant* constant = any_cast<UHDM::constant*>(res)) {
+          var->VpiValue(constant->VpiValue());
+        } else {
+          var->Expr((expr*)res);
+        }
       } else {
         unsupported_typespec* tps = s.MakeUnsupported_typespec();
         tps->VpiFile(fC->getFileName());
@@ -1060,16 +1090,15 @@ UHDM::typespec* CompileHelper::compileTypespec(
       VObjectType struct_or_union_type = fC->Type(struct_or_union);
       VectorOftypespec_member* members = s.MakeTypespec_memberVec();
 
-      bool packed = false;
       NodeId struct_or_union_member = fC->Sibling(type);
       if (fC->Type(struct_or_union_member) == VObjectType::slPacked_keyword) {
         struct_or_union_member = fC->Sibling(struct_or_union_member);
-        packed = true;
+        isPacked = true;
       }
 
       if (struct_or_union_type == VObjectType::slStruct_keyword) {
         struct_typespec* ts = s.MakeStruct_typespec();
-        ts->VpiPacked(packed);
+        ts->VpiPacked(isPacked);
         ts->Members(members);
         result = ts;
         ts->VpiFile(fC->getFileName());
@@ -1079,7 +1108,7 @@ UHDM::typespec* CompileHelper::compileTypespec(
         ts->VpiEndColumnNo(fC->EndColumn(type));
       } else {
         union_typespec* ts = s.MakeUnion_typespec();
-        ts->VpiPacked(packed);
+        ts->VpiPacked(isPacked);
         ts->Members(members);
         result = ts;
         ts->VpiFile(fC->getFileName());
@@ -1087,6 +1116,20 @@ UHDM::typespec* CompileHelper::compileTypespec(
         ts->VpiColumnNo(fC->Column(type));
         ts->VpiEndLineNo(fC->EndLine(type));
         ts->VpiEndColumnNo(fC->EndColumn(type));
+      }
+
+      if (ranges) {
+        if (isPacked) {
+          packed_array_typespec* pats = s.MakePacked_array_typespec();
+          pats->Elem_typespec(result);
+          pats->Ranges(ranges);
+          result = pats;
+        } else {
+          array_typespec* pats = s.MakeArray_typespec();
+          pats->Elem_typespec(result);
+          pats->Ranges(ranges);
+          result = pats;
+        }
       }
 
       while (struct_or_union_member) {
@@ -1278,14 +1321,16 @@ UHDM::typespec* CompileHelper::compileTypespec(
     case VObjectType::slConstant_expression: {
       expr* exp =
           (expr*)compileExpression(component, fC, type, compileDesign, nullptr,
-                                   instance, true, reduce == false);
+                                   instance, reduce, reduce == false);
       if (exp && exp->UhdmType() == uhdmref_obj) {
         return compileTypespec(component, fC, fC->Child(type), compileDesign,
                                result, instance, reduce);
       } else {
         integer_typespec* var = s.MakeInteger_typespec();
-        if (exp) {
+        if (exp->UhdmType() == uhdmconstant) {
           var->VpiValue(exp->VpiValue());
+        } else {
+          var->Expr(exp);
         }
         var->VpiFile(fC->getFileName());
         var->VpiLineNo(fC->Line(type));
@@ -1309,6 +1354,20 @@ UHDM::typespec* CompileHelper::compileTypespec(
     case VObjectType::slSigning_Signed:
     case VObjectType::slSigning_Unsigned: {
       // Parameters... will capture the signage property elsewhere
+      break;
+    }
+    case VObjectType::slConstant_range: {
+      UHDM::logic_typespec* tps = s.MakeLogic_typespec();
+      tps->VpiFile(fC->getFileName());
+      tps->VpiLineNo(fC->Line(type));
+      tps->VpiColumnNo(fC->Column(type));
+      tps->VpiEndLineNo(fC->EndLine(type));
+      tps->VpiEndColumnNo(fC->EndColumn(type));
+      VectorOfrange* ranges =
+          compileRanges(component, fC, type, compileDesign, pstmt, instance,
+                        reduce, size, false);
+      tps->Ranges(ranges);
+      result = tps;
       break;
     }
     default:
