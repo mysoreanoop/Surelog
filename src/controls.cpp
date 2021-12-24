@@ -10,35 +10,27 @@
 #include <uhdm/uhdm.h>
 #include <uhdm/vpi_listener.h>
 
-//#define DEBUG 1
-#ifdef DEBUG
-#define D(x) x
-#else
-#define D(x)
-#endif
-
 // functions declarations
+std::string visitCond(vpiHandle);
+std::string visitLeaf(vpiHandle);
+std::string visitOperation(vpiHandle);
 std::string visitbit_sel(vpiHandle, bool);
-std::string visitpart_sel(vpiHandle, bool);
 std::string visithier_path(vpiHandle);
 std::string visitindexed_part_sel(vpiHandle);
-std::string visitOperation(vpiHandle);
-std::string visitLeaf(vpiHandle);
-std::string visitCond(vpiHandle);
-void visitTernary(vpiHandle);
-void visitBlocks(vpiHandle);
-void visitTopModules(vpiHandle);
-void visitAssignment(vpiHandle);
+std::string visitpart_sel(vpiHandle, bool);
 void findTernaryInOperation(vpiHandle);
-
+void visitAssignment(vpiHandle);
+void visitBlocks(vpiHandle);
+void visitTernary(vpiHandle);
+void visitTopModules(vpiHandle);
 
 // global variables
 bool saveVariables = false;
-std::list <std::string> nets, ternaries, cases, ifs;
+std::list <std::string> all, nets, ternaries, cases, ifs;
 
 void print_list(std::list<std::string> &list, bool f = false, std::string fileName = "") {
-    std::ofstream file ("fileName");
-
+    std::ofstream file;
+    file.open(fileName, std::ios_base::app);
     for (auto const &i: list) {
         std::cout << i << std::endl;
         if(f)
@@ -51,11 +43,9 @@ void print_list(std::list<std::string> &list, bool f = false, std::string fileNa
 std::string visitref_obj(vpiHandle h) {
   std::string out = "";
   vpiHandle actual = vpi_handle(vpiActual, h);
-  fflush(stdout);
   if(actual) {
-    //out += "REF_OBJ Type: ";
-    //out += std::to_string(((const uhdm_handle *)actual)->type);
-    fflush(stdout);
+    std::cout << "Walking reference obj; type: " << 
+      std::to_string(((const uhdm_handle *)actual)->type) << std::endl;
     switch(((const uhdm_handle *)actual)->type) {
       case UHDM::uhdmenum_const :
       case UHDM::uhdmparameter : {
@@ -81,14 +71,24 @@ std::string visitref_obj(vpiHandle h) {
   } else {
     std::cout << "Not actual; object type: " << 
       std::to_string(((const uhdm_handle *)h)->type) << std::endl;
-    //  if(vpiHandle xx = vpi_handle(vpiParent, h)) {
-    //    out += " P:";
-    //    out += vpi_get_str(vpiName, xx);
-    //  }
-    if (const char* s = vpi_get_str(vpiFullName, actual))
+    if (const char* s = vpi_get_str(vpiFullName, h)) {
+      std::cout << "FullName available\n";
       out += s;
-    else if(const char *s = vpi_get_str(vpiName, actual))
+    } else if(const char *s = vpi_get_str(vpiName, h)) {
+      std::cout << "FullName unavailable\n";
       out += s;
+    } else std::cerr << "Neither FullName, nor Name available\n";
+    if(const char *s = vpi_get_str(vpiDecompile, h)) {
+      //XXX can't enter
+      std::cout << "Decompilation available: " << s << std::endl;
+      out += s;
+    } else {
+      s_vpi_value value;
+      vpi_get_value(h, &value);
+      if (value.format)
+        out += std::to_string(value.value.integer);
+      else std::cout << "Decompilation unavailable\n";
+    }
   }
   return out;
 }
@@ -99,11 +99,13 @@ std::string visitbit_sel(vpiHandle h) {
   vpiHandle par = vpi_handle(vpiParent, h);
   if(!par) std::cerr << "Couldn't find parent of bit_sel!\n";
   else out += visitref_obj(par);
+  std::cout << "Parent: " << out << std::endl;
   out += "[";
   vpiHandle ind = vpi_handle(vpiIndex, h);
   if(ind) out += visitLeaf(ind);
   else std::cout << "Index not resolved\n";
   out += "]";
+  std::cout << "Parent+Index: " << out << std::endl;
   return out;
 }
 
@@ -111,15 +113,21 @@ std::string visitindexed_part_sel(vpiHandle h) {
   std::string out = "";
   std::cout << "Walking indexed part select\n";
   vpiHandle par = vpi_handle(vpiParent, h);
-  if(!par) std::cout << "Couldn't find parent\n";
+  if(!par) std::cerr << "Couldn't find parent\n";
   else out += visitref_obj(par);
-  //TODO vpiBaseExpr, vpiWidthExpr
-  //out += "[";
-  //vpiHandle ind = vpi_handle(vpiIndex, h);
-  ////visitLeaf checks for type: uhdmconstant / uhdmparameter
-  //if(ind) out += visitLeaf(ind);
-  //else out += "ERROR Index not resolved!";
-  //out += "]";
+  out += "[";
+  if(vpiHandle b = vpi_handle(vpiBaseExpr, h)) {
+    std::cout << "Base expression found\n";
+    out += visitLeaf(b);
+    vpi_release_handle(b);
+  }
+  out += ":";
+  if(vpiHandle w = vpi_handle(vpiWidthExpr, h)) {
+    std::cout << "Width expression found\n";
+    out += visitLeaf(w);
+    vpi_release_handle(w);
+  }
+  out += "]";
   return out;
 }
 
@@ -156,8 +164,11 @@ std::string visitLeaf(vpiHandle h) {
       break;
     }
     case UHDM::uhdmconstant : {
-      std::cout << "Constant at leaf\n";
-      out += vpi_get_str(vpiDecompile, h);
+      if(!saveVariables) {
+        std::cout << "Constant at leaf; walking\n";
+        out += vpi_get_str(vpiDecompile, h);
+      } else
+        std::cout << "Ignoring constant at leaf\n";
       //s_vpi_value value;
       //vpi_get_value(h, &value);
       //if (value.format) {
@@ -166,12 +177,15 @@ std::string visitLeaf(vpiHandle h) {
       break;
     }
     case UHDM::uhdmparameter : {
-      std::cout << "Parameter at leaf\n";
-      std::string d = vpi_get_str(vpiDecompile, h);
-      out += d;
+      if(!saveVariables) {
+        std::cout << "Parameter at leaf\n";
+        std::string d = vpi_get_str(vpiDecompile, h);
+        out += d;
+      } else
+        std::cout << "Ignoring constant at leaf\n";
       break;
     }
-    case UHDM::uhdmhier_path : //Will never match??
+    case UHDM::uhdmhier_path : //XXX redundant
       std::cout << "Struct at leaf\n";
       out += visithier_path(h);
       break;
@@ -192,6 +206,16 @@ std::string visitLeaf(vpiHandle h) {
       std::cout << "Indexed part select at leaf\n";
       out += visitindexed_part_sel(h);
       break;
+    case UHDM::uhdmint_typespec :
+      std::cout << "Typespec at leaf\n";
+      s_vpi_value value;
+      vpi_get_value(h, &value);
+      if (value.format)
+        out += std::to_string(value.value.integer);
+      else out += "NVALUE";
+      //if (const char* s = vpi_get_str(vpiName, h))
+      //  out += s;
+      break;
     default: 
       std::cout << "UNKNOWN node at leaf; type: " << 
         std::to_string(((const uhdm_handle *)h)->type) << std::endl;
@@ -200,7 +224,7 @@ std::string visitLeaf(vpiHandle h) {
   return out;
 }
 
-//TODO bit_sel within hier_path pritning parent twice!!
+//FIXME bit_sel within structs needs special case; check if generalizable
 std::string visithier_path(vpiHandle soph) {
   std::string out = "";
   std::cout << "Walking hierarchical path\n";
@@ -208,131 +232,159 @@ std::string visithier_path(vpiHandle soph) {
   if(it) {
     bool first = true;
     while(vpiHandle itx = vpi_scan(it)) {
+      bool bitsel = ((const uhdm_handle *)itx)->type == UHDM::uhdmbit_select;
       std::cout << "Found ref object; type: " << 
         std::to_string(((const uhdm_handle *)itx)->type) << std::endl;
       if(first) {
-        std::cout << "Walking struct\n";
+        std::cout << "Walking struct; ignoring\n";
         out += visitLeaf(itx);
+        std::cout << out << std::endl;
       }
       else {
+        out += ".";
         std::cout << "Walking member hierarchy\n";
-        out += visitLeaf(itx);
+        if(bitsel) {
+          std::cout << "Member is bit-select; handling locally\n";
+          vpiHandle p = vpi_handle(vpiParent, itx);
+          out = visitref_obj(p);
+        } else {
+          std::cout << "Member not bit-select\n";
+          out += visitLeaf(itx);
+        }
+        std::cout << "Extracted at this point: " << out << std::endl;
       }
       first = false;
     }
-  } else out += "ERROR couldn't iterate through 2 ref objs!\n";
+  } else std::cerr << "Couldn't iterate through objs\n";
   return out;
 }
 
-//TODO add a switch to select between print variables or expression
 std::string visitOperation(vpiHandle h) {
+  vpiHandle ops = vpi_iterate(vpiOperand, h);
   std::string out = "";
-  const int type = vpi_get(vpiOpType, h);
-  std::cout << "Operation type: " << std::to_string(type) << std::endl;
-  std::string symbol = "";
-  switch(type) {
-    // some of the operations cannot appear
-    // within control expressions; and so are not included here
-    case 3  : symbol += " !  "; break;
-    case 4  : symbol += " ~  "; break;
-    case 5  : symbol += " &  "; break;
-    case 7  : symbol += " |  "; break;
-    case 11 : symbol += " -  "; break;
-    case 14 : symbol += " == "; break;
-    case 15 : symbol += " != "; break;
-    case 16 : symbol += " ==="; break;
-    case 17 : symbol += " !=="; break;
-    case 18 : symbol += " >  "; break;
-    case 19 : symbol += " >= "; break;
-    case 20 : symbol += " <  "; break;
-    case 21 : symbol += " <= "; break;
-    case 22 : symbol += " << "; break;
-    case 23 : symbol += " >> "; break;
-    case 24 : symbol += " +  "; break;
-    case 25 : symbol += " *  "; break;
-    case 26 : symbol += " && "; break;
-    case 27 : symbol += " || "; break;
-    case 28 : symbol += " &  "; break;
-    case 29 : symbol += " |  "; break;
-    case 30 : symbol += " ^  "; break;
-    case 32 : symbol += " :  "; break; 
-    case 33 : symbol += " ,  "; break; //concat
-    case 34 : symbol += "  { "; break;
-    case 41 : symbol += " <<<"; break;
-    case 42 : symbol += " >>>"; break;
-    case 67 : symbol += " '( "; break;
-    case 71 : symbol += " ,  "; break; //streaming left to right
-    case 72 : symbol += " ,  "; break; //streaming right to left
-    case 95 : symbol += " ,  "; break; 
-    default : symbol += " UNKNOWN_OP(" + std::to_string(type) + ") " ; break;
-  }
-
-  vpiHandle op = vpi_iterate(vpiOperand, h);
-  if(op) {
-    int opCnt = 0;
-
-    //priming
-    if(type == 33)
-      out += "{";
-    else if(type == 71)
-      out += "{>>{";
-    else if(type == 72)
-      out += "{<<{";
-    else if(type == 3 || type == 4 || type == 5 || type == 7)
-      out += symbol;
-
-    while(vpiHandle oph = vpi_scan(op)) {
-      std::cout << "Walking on opearands\n";
-      if(opCnt == 0) {
-        if(((const uhdm_handle *)oph)->type == UHDM::uhdmhier_path)
-          out += visithier_path(oph);
-        else if(((const uhdm_handle *)oph)->type == UHDM::uhdmoperation) {
-          out += "(";
-          out += visitOperation(oph);
-          out += ")";
-        }
-        else {
-          out += visitLeaf(oph);
-        }
-        opCnt++;
-      } else {
-        if(opCnt == 1) 
-          if(type == 32)
-            out += " ? ";
-          else if(type == 95)
-            out += " inside { ";
-          else out += symbol;
-        else    
-          out += symbol;
-        opCnt++;
-        if(((const uhdm_handle *)oph)->type == UHDM::uhdmhier_path)
-          out += visithier_path(oph);
-        else if(((const uhdm_handle *)oph)->type == UHDM::uhdmoperation) {
-          out += "(";
-          out += visitOperation(oph);
-          out += ")";
-        }
-        else
-          out += visitLeaf(oph);
-      }
-
-      vpi_release_handle(oph);
+  if(!saveVariables) {
+    const int type = vpi_get(vpiOpType, h);
+    std::cout << "Operation type: " << std::to_string(type) << std::endl;
+    std::string symbol = "";
+    switch(type) {
+      // some of the operations cannot appear
+      // within control expressions; and so are not included here
+      case 3  : symbol += " !  "; break;
+      case 4  : symbol += " ~  "; break;
+      case 5  : symbol += " &  "; break;
+      case 7  : symbol += " |  "; break;
+      case 11 : symbol += " -  "; break;
+      case 12 : symbol += " /  "; break;
+      case 14 : symbol += " == "; break;
+      case 15 : symbol += " != "; break;
+      case 16 : symbol += " ==="; break;
+      case 17 : symbol += " !=="; break;
+      case 18 : symbol += " >  "; break;
+      case 19 : symbol += " >= "; break;
+      case 20 : symbol += " <  "; break;
+      case 21 : symbol += " <= "; break;
+      case 22 : symbol += " << "; break;
+      case 23 : symbol += " >> "; break;
+      case 24 : symbol += " +  "; break;
+      case 25 : symbol += " *  "; break;
+      case 26 : symbol += " && "; break;
+      case 27 : symbol += " || "; break;
+      case 28 : symbol += " &  "; break;
+      case 29 : symbol += " |  "; break;
+      case 30 : symbol += " ^  "; break;
+      case 32 : symbol += " :  "; break; 
+      case 33 : symbol += " ,  "; break; //concat
+      case 34 : symbol += "  { "; break;
+      case 41 : symbol += " <<<"; break;
+      case 42 : symbol += " >>>"; break;
+      case 67 : symbol += " '( "; break;
+      case 71 : symbol += " ,  "; break; //streaming left to right
+      case 72 : symbol += " ,  "; break; //streaming right to left
+      case 95 : symbol += " ,  "; break; 
+      default : symbol += " UNKNOWN_OP(" + std::to_string(type) + ") " ; break;
     }
-    vpi_release_handle(op);
-    //wrap-up
-    //TODO if x in {y,...}
-    if(type == 33 ||
-       type == 34 || 
-       type == 95 || 
-       type == 71 || 
-       type == 72)
-      out += " }";
-    else if(type == 67) 
-      out += " )";
+
+    if(ops) {
+      int opCnt = 0;
+
+      //opening operand, if any
+      if(type == 33)
+        out += "{";
+      else if(type == 71)
+        out += "{>>{";
+      else if(type == 72)
+        out += "{<<{";
+      else if(type == 3 || type == 4 || type == 5 || type == 7)
+        out += symbol;
+
+      //operation body
+      while(vpiHandle oph = vpi_scan(ops)) {
+        std::cout << "Walking on opearands\n";
+        if(opCnt == 0) {
+          if(type == 67) {
+            std::cout << "Finding typespec\n";
+            vpiHandle num = vpi_handle(vpiTypespec, h);
+            out += visitLeaf(num);
+            out += symbol;
+          } 
+          if(((const uhdm_handle *)oph)->type == UHDM::uhdmhier_path)
+            out += visithier_path(oph);
+          else if(((const uhdm_handle *)oph)->type == UHDM::uhdmoperation) {
+            out += "(";
+            out += visitOperation(oph);
+            out += ")";
+          }
+          else {
+            out += visitLeaf(oph);
+          }
+          opCnt++;
+        } else {
+          if(opCnt == 1) 
+            if(type == 32)
+              out += " ? ";
+            else if(type == 95)
+              out += " inside { ";
+            else out += symbol;
+          else    
+            out += symbol;
+          opCnt++;
+          if(((const uhdm_handle *)oph)->type == UHDM::uhdmhier_path)
+            out += visithier_path(oph);
+          else if(((const uhdm_handle *)oph)->type == UHDM::uhdmoperation) {
+            out += "(";
+            out += visitOperation(oph);
+            out += ")";
+          }
+          else
+            out += visitLeaf(oph);
+        }
+
+        vpi_release_handle(oph);
+      }
+      //closing operand
+      if(type == 33 ||
+         type == 34 || 
+         type == 95 || 
+         type == 71 || 
+         type == 72)
+        out += " }";
+      else if(type == 67) 
+        out += " )";
+    } else {
+      std::cerr << "Couldn't iterate on operands! Iterator type: " << 
+        std::to_string(((const uhdm_handle *)ops)->type) << std::endl;
+    }
   } else {
-    std::cerr << "Couldn't iterate on operands! Iterator type: " << 
-      std::to_string(((const uhdm_handle *)op)->type) << std::endl;
+    //save variables individually
+    if(ops)
+      while(vpiHandle op = vpi_scan(ops)) {
+        std::cout << "Walking on opearands\n";
+        out += visitLeaf(op);
+        out += "\n"; //TODO individual lists
+        vpi_release_handle(op);
+      }
   }
+  vpi_release_handle(ops);
   return out;
 }
 
@@ -378,6 +430,7 @@ void visitIfElse(vpiHandle h) {
   } else std::cerr << "No condition found\n";
   std::cout << out << std::endl;
   ifs.push_back(out);
+  all.push_back(out);
 
   if(vpiHandle s = vpi_handle(vpiStmt, h)) {
     std::cout << "Found statements\n";
@@ -396,7 +449,7 @@ void visitCase(vpiHandle h) {
   } else std::cout << "No condition found!\n";
   std::cout << out << std::endl;
   cases.push_back(out);
-
+  all.push_back(out);
   std::cout << "Parsing case item; type: " << 
     std::to_string(((const uhdm_handle *)h)->type) << std::endl;
   vpiHandle newh = vpi_iterate(vpiCaseItem, h);
@@ -444,7 +497,6 @@ void visitAssignment(vpiHandle h) {
 }
 
 void visitBlocks(vpiHandle h) {
-  std::string out = "";
   std::cout << "Block type: " 
     << std::to_string(((const uhdm_handle *)h)->type) << std::endl;
   switch(((const uhdm_handle *)h)->type) {
@@ -459,7 +511,6 @@ void visitBlocks(vpiHandle h) {
       vpi_release_handle(i);
       break;
     }
-    //TODO what is this for?
     case UHDM::uhdmstmt :
       if(((const uhdm_handle *)h)->type == UHDM::uhdmevent_control) 
         visitBlocks(h);
@@ -471,7 +522,6 @@ void visitBlocks(vpiHandle h) {
     case UHDM::uhdmif_stmt :
     case UHDM::uhdmelse_stmt : 
     case UHDM::uhdmif_else :
-      //TODO ignore if/ifelse blocks with systemfuncs only
       std::cout << "If/IfElse statement found\n";
       visitIfElse(h);
       if(vpiHandle el = vpi_handle(vpiElseStmt, h)) {
@@ -504,8 +554,9 @@ void visitBlocks(vpiHandle h) {
 }
 
 void findTernaryInOperation(vpiHandle h) {
-  std::string out = "\nIn findTernary\n";
-  if(((uhdm_handle *)h)->type == UHDM::uhdmoperation) { //safety check
+  std::string out = "";
+  std::cout << "Checking if operand is ternary\n";
+  if(((uhdm_handle *)h)->type == UHDM::uhdmoperation) {
     const int nk = vpi_get(vpiOpType, h);
     //std::cout << "Type " << std::to_string(nk) << "\n";
     if(nk == 32) {
@@ -543,7 +594,7 @@ void visitTernary(vpiHandle h) {
         case UHDM::uhdmbit_select :
         case UHDM::uhdmconstant : 
         case UHDM::uhdmparameter :
-        case UHDM::uhdmexpr : //TODO look into this again!
+        case UHDM::uhdmexpr : //look into this again!
           if(first) {
             std::cout << "Leaf found in ternary\n";
             std::string out = visitLeaf(op);
@@ -573,6 +624,7 @@ void visitTernary(vpiHandle h) {
   std::cout << "Saving ternaries...\n";
   print_list(current);
   ternaries.splice(ternaries.end(), current);
+  all.splice(ternaries.end(), current);
   return;
 }
 
@@ -680,15 +732,13 @@ void visitTopModules(vpiHandle ti) {
 
         // ContAssigns:
         //TODO struct assignment "bp_be/src/v/bp_be_calculator/bp_be_pipe_aux.sv" Ln 338
-        //, unicore.dut.c[0].dut.cache.decode_v_r.decode_v_r.data_size_op[0][0]
-        //TODO some assigns (not wire assignments) are missed -- fix it
         vpiHandle ci = vpi_iterate(vpiContAssign, mh);
         if(ci) {
           std::cout << "Found continuous assign statements\n";
             while (vpiHandle ch = vpi_scan(ci)) {
-              std::cout << "Info -> " +
-                std::string(vpi_get_str(vpiFile, ch)) +
-                ", line:" + std::to_string(vpi_get(vpiLineNo, ch)) + "\n";
+              std::cout << "ContAssign Info -> " <<
+                std::string(vpi_get_str(vpiFile, ch)) <<
+                ", line:" << std::to_string(vpi_get(vpiLineNo, ch)) << std::endl;
               visitAssignment(ch);
               vpi_release_handle(ch);
             }
@@ -700,10 +750,6 @@ void visitTopModules(vpiHandle ti) {
         if(ai) {
           std::cout << "Found always block\n";
             while(vpiHandle ah = vpi_scan(ai)) {
-              out_f += "Info -> \n";// +
-              //std::string(vpi_get_str(vpiFile, abh)) +
-              //", line:" + std::to_string(vpi_get(vpiLineNo, abh)) + "\n";
-              //function
               visitBlocks(ah);
               vpi_release_handle(ah);
             }
@@ -828,23 +874,15 @@ int main(int argc, const char** argv) {
     } else std::cout << "No uhdmtopModules found!";
   }
 
-  std::ofstream f ("control_signals");
-  std::cout << "\n\n\n*** Printing case conditions ***\n\n\n";
-  std::list <std::string> :: iterator it;
-  for(it = cases.begin(); it != cases.end(); ++it) {
-      std::cout << *it << std::endl;
-      f << *it << std::endl;
-  }
-  std::cout << "\n\n\n*** Printing if conditions ***\n\n\n";
-  for(it = ifs.begin(); it != ifs.end(); ++it) {
-      std::cout << *it << std::endl;
-      f << *it << std::endl;
-  }
-  std::cout << "\n\n\n*** Printing ternary conditions ***\n\n\n";
-  for(it = ternaries.begin(); it != ternaries.end(); ++it) {
-      std::cout << *it << std::endl;
-      f << *it << std::endl;
-  }
+  
+  std::cout << "\n\n\n*** Printing all conditions ***\n\n\n";
+  print_list(all, true, "control_signals");
+  //std::cout << "\n\n\n*** Printing case conditions ***\n\n\n";
+  //print_list(cases, true, "control_signals");
+  //std::cout << "\n\n\n*** Printing if/if-else conditions ***\n\n\n";
+  //print_list(ifs, true, "control_signals");
+  //std::cout << "\n\n\n*** Printing ternary conditions ***\n\n\n";
+  //print_list(ternaries, true, "control_signals");
 
   std::cout << "\n\n\n*** Parsing Complete!!! ***\n\n\n";
 
